@@ -1,5 +1,5 @@
-const shell = require("shelljs");
-const chalk = require("chalk");
+import shell from "shelljs";
+import chalk from "chalk";
 
 const help = () => {
   shell.echo();
@@ -49,4 +49,4 @@ const help = () => {
   shell.echo();
 };
 
-module.exports = help;
+export default help;

@@ -1,18 +1,17 @@
 #!/usr/bin/env node
 
-require("shelljs-plugin-clear");
-const shell = require("shelljs");
-const chalk = require("chalk");
-const inquirer = require("inquirer");
-const pressAnyKey = require("press-any-key");
-const fs = require("fs");
-const commandExists = require("command-exists").sync;
-const { spawn } = require("child_process");
-const Spinner = require("cli-spinner").Spinner;
+import chalk from "chalk";
+import { Spinner } from "cli-spinner";
+import { sync as commandExists } from "command-exists";
+import fs from "fs";
+import inquirer from "inquirer";
+import pressAnyKey from "press-any-key";
+import shell from "shelljs";
+import "shelljs-plugin-clear";
+import help from "./utils/help.js";
+import { brewInstall, jqInstall } from "./utils/utils.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
-const { jqInstall, brewInstall } = require("./utils/utils.js");
-const help = require("./utils/help.js");
 
 const menu = () => {
   shell.clear();
@@ -213,7 +212,7 @@ const vVue = () => {
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
-                chalk.blueBright("Take me outta here!"),
+                chalk.redBright("Take me outta here!"),
               ],
             },
           ])
@@ -271,7 +270,7 @@ const next = () => {
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
-                chalk.blueBright("Take me outta here!"),
+                chalk.redBright("Take me outta here!"),
               ],
             },
           ])
@@ -329,7 +328,7 @@ const django = () => {
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
-                chalk.blueBright("Take me outta here!"),
+                chalk.redBright("Take me outta here!"),
               ],
             },
           ])
@@ -373,18 +372,46 @@ const reactInstall = () => {
 
 const vReactInstall = () => {
   console.log("VReact install");
+  if (!commandExists("brew")) {
+    brewInstall();
+  }
+
+  if (!commandExists("jq")) {
+    jqInstall();
+  }
 };
 
 const vVueInstall = () => {
   console.log("Vue Install");
+  if (!commandExists("brew")) {
+    brewInstall();
+  }
+
+  if (!commandExists("jq")) {
+    jqInstall();
+  }
 };
 
 const nextInstall = () => {
   console.log("Next install");
+  if (!commandExists("brew")) {
+    brewInstall();
+  }
+
+  if (!commandExists("jq")) {
+    jqInstall();
+  }
 };
 
 const DjangoInstall = () => {
   console.log("Django Install...");
+  if (!commandExists("brew")) {
+    brewInstall();
+  }
+
+  if (!commandExists("jq")) {
+    jqInstall();
+  }
 };
 
 menu();
