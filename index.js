@@ -6,6 +6,7 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 import pressAnyKey from "press-any-key";
 import fs from "fs";
+import { stdout } from "process";
 
 const menu = () => {
   shell.clear();
@@ -24,7 +25,7 @@ const menu = () => {
     .prompt([
       {
         type: "list",
-        name: "theme",
+        name: "frame",
         message: chalk.blueBright("Please select your framework"),
         choices: [
           chalk.cyan("React"),
@@ -38,7 +39,7 @@ const menu = () => {
       },
     ])
     .then((answers) => {
-      let choice = JSON.stringify(answers.theme.slice(5, -5));
+      let choice = JSON.stringify(answers.frame.slice(5, -5));
 
       if (choice === '"React"') {
         react();
@@ -46,7 +47,7 @@ const menu = () => {
         vReact();
       } else if (choice === '"Vite-Vue"') {
         vVue();
-      } else if (choice === '"Next"') {
+      } else if (choice === '"Next.js"') {
         next();
       } else if (choice === '"Django"') {
         django();
@@ -61,20 +62,289 @@ const menu = () => {
 };
 
 const react = () => {
-  console.log("Starting React questions...");
+  shell.echo();
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "project",
+        message: chalk.blueBright("Please choose the name of your project"),
+      },
+    ])
+    .then((name) => {
+      shell.echo();
+      const path = `${shell.pwd().stdout}/${name.project}`;
+      if (name.project === "") {
+        shell.echo(chalk.redBright("Cannot be empty!"));
+        react();
+      } else if (fs.existsSync(path)) {
+        shell.echo(chalk.redBright("The directory already exists!"));
+        react();
+      } else {
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "project",
+              message: `Your ${chalk.cyan(
+                "React"
+              )} app will be named ${chalk.cyan(
+                name.project
+              )} and it will be created in ${chalk.cyan(path)}. Continue?`,
+              choices: [
+                chalk.blueBright("Go ahead!"),
+                chalk.blueBright("I regret that lame name!"),
+                chalk.blueBright("Please start over"),
+                chalk.redBright("Take me outta here!"),
+              ],
+            },
+          ])
+          .then((answer) => {
+            let choice = JSON.stringify(answer.project.slice(5, -5));
+            shell.echo();
+            if (choice === '"Go ahead!"') {
+              reactInstall();
+            } else if (choice === '"I regret that lame name!"') {
+              react();
+            } else if (choice === '"Please start over"') {
+              menu();
+            } else {
+              shell.echo(chalk.blueBright("Goodbye!"));
+              shell.echo();
+            }
+          });
+      }
+    });
 };
+
 const vReact = () => {
-  console.log("Starting Vite-React questions...");
+  shell.echo();
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "project",
+        message: chalk.blueBright("Please choose the name of your project"),
+      },
+    ])
+    .then((name) => {
+      shell.echo();
+      const path = `${shell.pwd().stdout}/${name.project}`;
+      if (name.project === "") {
+        shell.echo(chalk.redBright("Cannot be empty!"));
+        react();
+      } else if (fs.existsSync(path)) {
+        shell.echo(chalk.redBright("The directory already exists!"));
+        react();
+      } else {
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "project",
+              message: `Your ${chalk.yellow(
+                "Vite-React"
+              )} app will be named ${chalk.yellow(
+                name.project
+              )} and it will be created in ${chalk.yellow(path)}. Continue?`,
+              choices: [
+                chalk.blueBright("Go ahead!"),
+                chalk.blueBright("I regret that lame name!"),
+                chalk.blueBright("Please start over"),
+                chalk.redBright("Take me outta here!"),
+              ],
+            },
+          ])
+          .then((answer) => {
+            let choice = JSON.stringify(answer.project.slice(5, -5));
+            shell.echo();
+            if (choice === '"Go ahead!"') {
+              vReactInstall();
+            } else if (choice === '"I regret that lame name!"') {
+              vReact();
+            } else if (choice === '"Please start over"') {
+              menu();
+            } else {
+              shell.echo(chalk.blueBright("Goodbye!"));
+              shell.echo();
+            }
+          });
+      }
+    });
 };
+
 const vVue = () => {
-  console.log("Starting Vite-Vue questions...");
+  shell.echo();
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "project",
+        message: chalk.blueBright("Please choose the name of your project"),
+      },
+    ])
+    .then((name) => {
+      shell.echo();
+      const path = `${shell.pwd().stdout}/${name.project}`;
+      if (name.project === "") {
+        shell.echo(chalk.redBright("Cannot be empty!"));
+        react();
+      } else if (fs.existsSync(path)) {
+        shell.echo(chalk.redBright("The directory already exists!"));
+        react();
+      } else {
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "project",
+              message: `Your ${chalk.redBright(
+                "Vite-Vue"
+              )} app will be named ${chalk.redBright(
+                name.project
+              )} and it will be created in ${chalk.redBright(path)}. Continue?`,
+              choices: [
+                chalk.blueBright("Go ahead!"),
+                chalk.blueBright("I regret that lame name!"),
+                chalk.blueBright("Please start over"),
+                chalk.blueBright("Take me outta here!"),
+              ],
+            },
+          ])
+          .then((answer) => {
+            let choice = JSON.stringify(answer.project.slice(5, -5));
+            shell.echo();
+            if (choice === '"Go ahead!"') {
+              vVueInstall();
+            } else if (choice === '"I regret that lame name!"') {
+              vVue();
+            } else if (choice === '"Please start over"') {
+              menu();
+            } else {
+              shell.echo(chalk.blueBright("Goodbye!"));
+              shell.echo();
+            }
+          });
+      }
+    });
 };
+
 const next = () => {
-  console.log("Starting Next.js questions...");
+  shell.echo();
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "project",
+        message: chalk.blueBright("Please choose the name of your project"),
+      },
+    ])
+    .then((name) => {
+      shell.echo();
+      const path = `${shell.pwd().stdout}/${name.project}`;
+      if (name.project === "") {
+        shell.echo(chalk.redBright("Cannot be empty!"));
+        react();
+      } else if (fs.existsSync(path)) {
+        shell.echo(chalk.redBright("The directory already exists!"));
+        react();
+      } else {
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "project",
+              message: `Your ${chalk.greenBright(
+                "Next.js"
+              )} app will be named ${chalk.greenBright(
+                name.project
+              )} and it will be created in ${chalk.greenBright(
+                path
+              )}. Continue?`,
+              choices: [
+                chalk.blueBright("Go ahead!"),
+                chalk.blueBright("I regret that lame name!"),
+                chalk.blueBright("Please start over"),
+                chalk.blueBright("Take me outta here!"),
+              ],
+            },
+          ])
+          .then((answer) => {
+            let choice = JSON.stringify(answer.project.slice(5, -5));
+            shell.echo();
+            if (choice === '"Go ahead!"') {
+              nextInstall();
+            } else if (choice === '"I regret that lame name!"') {
+              next();
+            } else if (choice === '"Please start over"') {
+              menu();
+            } else {
+              shell.echo(chalk.blueBright("Goodbye!"));
+              shell.echo();
+            }
+          });
+      }
+    });
 };
+
 const django = () => {
-  console.log("Starting Django questions...");
+  shell.echo();
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "project",
+        message: chalk.blueBright("Please choose the name of your project"),
+      },
+    ])
+    .then((name) => {
+      shell.echo();
+      const path = `${shell.pwd().stdout}/${name.project}`;
+      if (name.project === "") {
+        shell.echo(chalk.redBright("Cannot be empty!"));
+        react();
+      } else if (fs.existsSync(path)) {
+        shell.echo(chalk.redBright("The directory already exists!"));
+        react();
+      } else {
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "project",
+              message: `Your ${chalk.magentaBright(
+                "Django"
+              )} app will be named ${chalk.magentaBright(
+                name.project
+              )} and it will be created in ${chalk.magentaBright(
+                path
+              )}. Continue?`,
+              choices: [
+                chalk.blueBright("Go ahead!"),
+                chalk.blueBright("I regret that lame name!"),
+                chalk.blueBright("Please start over"),
+                chalk.blueBright("Take me outta here!"),
+              ],
+            },
+          ])
+          .then((answer) => {
+            let choice = JSON.stringify(answer.project.slice(5, -5));
+            shell.echo();
+            if (choice === '"Go ahead!"') {
+              DjangoInstall();
+            } else if (choice === '"I regret that lame name!"') {
+              django();
+            } else if (choice === '"Please start over"') {
+              menu();
+            } else {
+              shell.echo(chalk.blueBright("Goodbye!"));
+              shell.echo();
+            }
+          });
+      }
+    });
 };
+
 const helpMe = () => {
   shell.echo();
   shell.echo(chalk.redBright("Frames"), "scaffolds apps in different flavors.");
@@ -126,6 +396,26 @@ const helpMe = () => {
   ).then(() => {
     menu();
   });
+};
+
+const reactInstall = () => {
+  console.log("React install");
+};
+
+const vReactInstall = () => {
+  console.log("VReact install");
+};
+
+const vVueInstall = () => {
+  console.log("Vue Install");
+};
+
+const nextInstall = () => {
+  console.log("Next install");
+};
+
+const DjangoInstall = () => {
+  console.log("Django Install...");
 };
 
 menu();
