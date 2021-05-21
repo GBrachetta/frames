@@ -1,0 +1,33 @@
+{
+  "name": "@gbrachetta/frames",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A tool to scaffold boilerplates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GBrachetta/frames.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "react",
+    "django",
+    "nextjs"
+  ],
+  "author": "Guillermo Brachetta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GBrachetta/frames/issues"
+  },
+  "homepage": "https://github.com/GBrachetta/frames#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "inquirer": "^8.0.0",
+    "press-any-key": "^0.1.1",
+    "shelljs": "^0.8.4",
+    "shelljs-plugin-clear": "^0.2.0"
+  }
+}
