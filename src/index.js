@@ -37,14 +37,19 @@ const menu = () => {
         type: "list",
         name: "frame",
         message: chalk.blueBright("Please select your framework"),
+        loop: false,
+        pageSize: 10,
         choices: [
+          new inquirer.Separator(),
           chalk.cyan("React"),
           chalk.cyan("Vite-React"),
           chalk.cyan("Vite-Vue"),
           chalk.cyan("Next.js"),
           chalk.cyan("Django"),
+          new inquirer.Separator(),
           chalk.green("Help"),
           chalk.redBright("Exit"),
+          new inquirer.Separator(),
         ],
       },
     ])
@@ -85,7 +90,7 @@ const react = () => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(chalk.redBright("Cannot be empty!"));
+        shell.echo(chalk.redBright("The name of the app cannot be empty!"));
         react();
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
@@ -96,16 +101,19 @@ const react = () => {
             {
               type: "list",
               name: "project",
+              loop: false,
               message: `Your ${chalk.cyan(
                 "React"
               )} app will be named ${chalk.cyan(
                 name.project
               )} and it will be created in ${chalk.cyan(path)}. Continue?`,
               choices: [
+                new inquirer.Separator(),
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
                 chalk.redBright("Take me outta here!"),
+                new inquirer.Separator(),
               ],
             },
           ])
@@ -141,7 +149,7 @@ const vReact = () => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(chalk.redBright("Cannot be empty!"));
+        shell.echo(chalk.redBright("The name of the app cannot be empty!"));
         react();
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
@@ -152,16 +160,19 @@ const vReact = () => {
             {
               type: "list",
               name: "project",
+              loop: false,
               message: `Your ${chalk.yellow(
                 "Vite-React"
               )} app will be named ${chalk.yellow(
                 name.project
               )} and it will be created in ${chalk.yellow(path)}. Continue?`,
               choices: [
+                new inquirer.Separator(),
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
                 chalk.redBright("Take me outta here!"),
+                new inquirer.Separator(),
               ],
             },
           ])
@@ -197,7 +208,7 @@ const vVue = () => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(chalk.redBright("Cannot be empty!"));
+        shell.echo(chalk.redBright("The name of the app cannot be empty!"));
         react();
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
@@ -208,16 +219,19 @@ const vVue = () => {
             {
               type: "list",
               name: "project",
+              loop: false,
               message: `Your ${chalk.redBright(
                 "Vite-Vue"
               )} app will be named ${chalk.redBright(
                 name.project
               )} and it will be created in ${chalk.redBright(path)}. Continue?`,
               choices: [
+                new inquirer.Separator(),
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
                 chalk.redBright("Take me outta here!"),
+                new inquirer.Separator(),
               ],
             },
           ])
@@ -253,7 +267,7 @@ const next = () => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(chalk.redBright("Cannot be empty!"));
+        shell.echo(chalk.redBright("The name of the app cannot be empty!"));
         react();
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
@@ -264,6 +278,7 @@ const next = () => {
             {
               type: "list",
               name: "project",
+              loop: false,
               message: `Your ${chalk.greenBright(
                 "Next.js"
               )} app will be named ${chalk.greenBright(
@@ -272,10 +287,12 @@ const next = () => {
                 path
               )}. Continue?`,
               choices: [
+                new inquirer.Separator(),
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
                 chalk.redBright("Take me outta here!"),
+                new inquirer.Separator(),
               ],
             },
           ])
@@ -311,7 +328,7 @@ const django = () => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(chalk.redBright("Cannot be empty!"));
+        shell.echo(chalk.redBright("The name of the app cannot be empty!"));
         react();
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
@@ -322,6 +339,7 @@ const django = () => {
             {
               type: "list",
               name: "project",
+              loop: false,
               message: `Your ${chalk.magentaBright(
                 "Django"
               )} app will be named ${chalk.magentaBright(
@@ -330,10 +348,12 @@ const django = () => {
                 path
               )}. Continue?`,
               choices: [
+                new inquirer.Separator(),
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
                 chalk.redBright("Take me outta here!"),
+                new inquirer.Separator(),
               ],
             },
           ])

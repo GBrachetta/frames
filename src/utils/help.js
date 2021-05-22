@@ -35,17 +35,13 @@ const help = () => {
   shell.echo();
   shell.echo(
     `${chalk.redBright("Frames")} was created by ${chalk.blueBright(
-      "Guillermo Brachetta"
+      "Guillermo Brachetta."
     )}`
   );
   shell.echo();
-  shell.echo("Feel free to use, modify and suggest changes to this script:");
+  shell.echo("Feel free to use, distribute and contribute:");
   shell.echo();
-  shell.echo(
-    `${chalk.cyanBright(
-      "https://gist.github.com/GBrachetta/6fe0346d897941383e4ce6383746037a"
-    )}`
-  );
+  shell.echo(`${chalk.cyanBright("https://github.com/GBrachetta/frames")}`);
   shell.echo();
 };
 
