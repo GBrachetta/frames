@@ -30,3 +30,20 @@ export const jqInstall = () => {
   };
   jqI();
 };
+
+export const pipenvInstall = () => {
+  shell.echo(chalk.cyan("Pipenv does not exist. Installing..."));
+  const pipenvInstall = (command, onSuccess) => {
+    return new Promise((resolve, reject) => {
+      const process = spawn(command, { shell: true });
+      spinner.start();
+      process.on("exit", () => {
+        spinner.stop();
+      });
+    });
+  };
+  const pipenvI = async () => {
+    await pipenvInstall("brew install pipenv");
+  };
+  pipenvI();
+};

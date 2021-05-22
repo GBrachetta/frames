@@ -9,11 +9,12 @@ import pressAnyKey from "press-any-key";
 import shell from "shelljs";
 import "shelljs-plugin-clear";
 import help from "./utils/help.js";
+import installDjango from "./utils/install-django.js";
 import installNext from "./utils/install-next.js";
 import installReact from "./utils/install-react.js";
 import installVReact from "./utils/install-vReact.js";
 import installVVue from "./utils/install-vVue.js";
-import { brewInstall, jqInstall } from "./utils/utils.js";
+import { brewInstall, jqInstall, pipenvInstall } from "./utils/utils.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
 
@@ -364,7 +365,6 @@ const helpMe = () => {
 };
 
 const reactInstall = (name) => {
-  console.log("React install");
   if (!commandExists("brew")) {
     brewInstall();
   }
@@ -389,7 +389,6 @@ const vReactInstall = (name) => {
 };
 
 const vVueInstall = (name) => {
-  console.log("Vue Install");
   if (!commandExists("brew")) {
     brewInstall();
   }
@@ -402,7 +401,6 @@ const vVueInstall = (name) => {
 };
 
 const nextInstall = (name) => {
-  console.log("Next install");
   if (!commandExists("brew")) {
     brewInstall();
   }
@@ -415,14 +413,15 @@ const nextInstall = (name) => {
 };
 
 const DjangoInstall = (name) => {
-  console.log("Django Install...");
   if (!commandExists("brew")) {
     brewInstall();
   }
 
-  if (!commandExists("jq")) {
-    jqInstall();
+  if (!commandExists("pipenv")) {
+    pipenvInstall();
   }
+
+  installDjango(name);
 };
 
 menu();
