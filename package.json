@@ -1,6 +1,6 @@
 {
   "name": "@gbrachetta/frames",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "A tool to scaffold boilerplates",
   "main": "index.js",
