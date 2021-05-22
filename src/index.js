@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import chalk from "chalk";
-import { Spinner } from "cli-spinner";
 import { sync as commandExists } from "command-exists";
+import figlet from "figlet";
 import fs from "fs";
 import inquirer from "inquirer";
 import pressAnyKey from "press-any-key";
@@ -15,20 +15,15 @@ import installReact from "./utils/install-react.js";
 import installVReact from "./utils/install-vReact.js";
 import installVVue from "./utils/install-vVue.js";
 import { brewInstall, jqInstall, pipenvInstall } from "./utils/utils.js";
-const spinner = new Spinner("%s");
-spinner.setSpinnerString(18);
 
 const menu = () => {
   shell.clear();
   shell.echo();
-  shell.echo(chalk.blue("================================"));
-  shell.echo(chalk.redBright(" ____ ____ ____ _  _ ____ ____"));
-  shell.echo(chalk.redBright(" |___ |__/ |__| |\\/| |___ [__"));
-  shell.echo(chalk.redBright(" |    |  \\ |  | |  | |___ ___]"));
-  shell.echo();
-  shell.echo(chalk.blue("================================"));
-  shell.echo(chalk.greenBright("       WELCOME TO FRAMES!"));
-  shell.echo(chalk.blue("================================"));
+  shell.echo(chalk.redBright("======================================"));
+  console.log(figlet.textSync("Frames"));
+  shell.echo(chalk.redBright("======================================"));
+  shell.echo(chalk.cyanBright("          WELCOME TO FRAMES!"));
+  shell.echo(chalk.redBright("======================================"));
   shell.echo();
 
   inquirer
@@ -41,13 +36,13 @@ const menu = () => {
         pageSize: 10,
         choices: [
           new inquirer.Separator(),
-          chalk.cyan("React"),
-          chalk.cyan("Vite-React"),
-          chalk.cyan("Vite-Vue"),
-          chalk.cyan("Next.js"),
-          chalk.cyan("Django"),
+          chalk.cyanBright("React"),
+          chalk.cyanBright("Vite-React"),
+          chalk.cyanBright("Vite-Vue"),
+          chalk.cyanBright("Next.js"),
+          chalk.cyanBright("Django"),
           new inquirer.Separator(),
-          chalk.green("Help"),
+          chalk.greenBright("Help"),
           chalk.redBright("Exit"),
           new inquirer.Separator(),
         ],

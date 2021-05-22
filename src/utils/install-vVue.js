@@ -3,7 +3,11 @@ import shell from "shelljs";
 import chalk from "chalk";
 
 const installVVue = (name) => {
-  shell.echo(chalk.cyan(`Installing ${name}...`));
+  shell.echo(
+    chalk.cyan(
+      `Installing ${name}. Please hold, this will take some moments...`
+    )
+  );
   spawnSync("yarn", ["create", "@vitejs/app", name, "--template", "vue"]);
   shell.cd(`./${name}`);
 

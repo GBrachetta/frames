@@ -3,7 +3,11 @@ import shell from "shelljs";
 import chalk from "chalk";
 
 const installDjango = (name) => {
-  shell.echo(chalk.cyan(`Installing ${name}...`));
+  shell.echo(
+    chalk.cyan(
+      `Installing ${name}. Please hold, this will take some moments...`
+    )
+  );
   shell.mkdir(name);
   shell.cd(`./${name}`);
   spawnSync("gh", ["repo", "clone", "GBrachetta/boilerplate-django", "."]);

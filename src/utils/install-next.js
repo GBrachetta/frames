@@ -3,7 +3,11 @@ import shell from "shelljs";
 import chalk from "chalk";
 
 const installNext = (name) => {
-  shell.echo(chalk.cyan(`Installing ${name}...`));
+  shell.echo(
+    chalk.cyan(
+      `Installing ${name}. Please hold, this will take some moments...`
+    )
+  );
   spawnSync("yarn", ["create", "next-app", name]);
   shell.cd(`./${name}`);
   spawnSync("yarn", ["add", "prop-types"]);

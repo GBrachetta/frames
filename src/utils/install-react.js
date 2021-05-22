@@ -3,9 +3,13 @@ import shell from "shelljs";
 import chalk from "chalk";
 
 const installReact = (name) => {
-  shell.echo(chalk.cyan(`Installing ${name}...`));
+  shell.echo(
+    chalk.cyan(
+      `Installing ${name}. Please hold, this will take some moments...`
+    )
+  );
   spawnSync("npx", ["create-react-app", name]);
-  shell.cd(`./${name}`); //
+  shell.cd(`./${name}`);
   spawnSync("yarn", ["add", "prop-types"]);
   spawnSync("yarn", ["add", "-D", "eslint", "prettier"]);
   spawnSync("npx", [
