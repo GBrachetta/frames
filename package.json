@@ -17,6 +17,9 @@
     "django",
     "nextjs"
   ],
+  "bin": {
+    "frames2": "src/index.js"
+  },
   "author": "Guillermo Brachetta",
   "license": "MIT",
   "bugs": {
