@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import chalk from "chalk";
-import { execSync, spawnSync } from "child_process";
 import { Spinner } from "cli-spinner";
 import { sync as commandExists } from "command-exists";
 import fs from "fs";
@@ -10,11 +9,13 @@ import pressAnyKey from "press-any-key";
 import shell from "shelljs";
 import "shelljs-plugin-clear";
 import help from "./utils/help.js";
+import installNext from "./utils/install-next.js";
+import installReact from "./utils/install-react.js";
+import installVReact from "./utils/install-vReact.js";
+import installVVue from "./utils/install-vVue.js";
 import { brewInstall, jqInstall } from "./utils/utils.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
-import installReact from "./utils/install-react.js";
-import installVReact from "./utils/install-vReact.js";
 
 const menu = () => {
   shell.clear();
@@ -223,7 +224,7 @@ const vVue = () => {
             let choice = JSON.stringify(answer.project.slice(5, -5));
             shell.echo();
             if (choice === '"Go ahead!"') {
-              vVueInstall();
+              vVueInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
               vVue();
             } else if (choice === '"Please start over"') {
@@ -281,7 +282,7 @@ const next = () => {
             let choice = JSON.stringify(answer.project.slice(5, -5));
             shell.echo();
             if (choice === '"Go ahead!"') {
-              nextInstall();
+              nextInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
               next();
             } else if (choice === '"Please start over"') {
@@ -339,7 +340,7 @@ const django = () => {
             let choice = JSON.stringify(answer.project.slice(5, -5));
             shell.echo();
             if (choice === '"Go ahead!"') {
-              DjangoInstall();
+              DjangoInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
               django();
             } else if (choice === '"Please start over"') {
@@ -387,7 +388,7 @@ const vReactInstall = (name) => {
   installVReact(name);
 };
 
-const vVueInstall = () => {
+const vVueInstall = (name) => {
   console.log("Vue Install");
   if (!commandExists("brew")) {
     brewInstall();
@@ -396,9 +397,11 @@ const vVueInstall = () => {
   if (!commandExists("jq")) {
     jqInstall();
   }
+
+  installVVue(name);
 };
 
-const nextInstall = () => {
+const nextInstall = (name) => {
   console.log("Next install");
   if (!commandExists("brew")) {
     brewInstall();
@@ -407,9 +410,11 @@ const nextInstall = () => {
   if (!commandExists("jq")) {
     jqInstall();
   }
+
+  installNext(name);
 };
 
-const DjangoInstall = () => {
+const DjangoInstall = (name) => {
   console.log("Django Install...");
   if (!commandExists("brew")) {
     brewInstall();
