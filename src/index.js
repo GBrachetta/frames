@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import chalk from "chalk";
+import { execSync, spawnSync } from "child_process";
 import { Spinner } from "cli-spinner";
 import { sync as commandExists } from "command-exists";
 import fs from "fs";
@@ -12,6 +13,8 @@ import help from "./utils/help.js";
 import { brewInstall, jqInstall } from "./utils/utils.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
+import installReact from "./utils/install-react.js";
+import installVReact from "./utils/install-vReact.js";
 
 const menu = () => {
   shell.clear();
@@ -108,7 +111,7 @@ const react = () => {
             let choice = JSON.stringify(answer.project.slice(5, -5));
             shell.echo();
             if (choice === '"Go ahead!"') {
-              reactInstall();
+              reactInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
               react();
             } else if (choice === '"Please start over"') {
@@ -164,7 +167,7 @@ const vReact = () => {
             let choice = JSON.stringify(answer.project.slice(5, -5));
             shell.echo();
             if (choice === '"Go ahead!"') {
-              vReactInstall();
+              vReactInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
               vReact();
             } else if (choice === '"Please start over"') {
@@ -359,7 +362,7 @@ const helpMe = () => {
   });
 };
 
-const reactInstall = () => {
+const reactInstall = (name) => {
   console.log("React install");
   if (!commandExists("brew")) {
     brewInstall();
@@ -368,10 +371,11 @@ const reactInstall = () => {
   if (!commandExists("jq")) {
     jqInstall();
   }
+
+  installReact(name);
 };
 
-const vReactInstall = () => {
-  console.log("VReact install");
+const vReactInstall = (name) => {
   if (!commandExists("brew")) {
     brewInstall();
   }
@@ -379,6 +383,8 @@ const vReactInstall = () => {
   if (!commandExists("jq")) {
     jqInstall();
   }
+
+  installVReact(name);
 };
 
 const vVueInstall = () => {
