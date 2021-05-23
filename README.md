@@ -16,7 +16,7 @@ npm -i -g @gbrachetta/frames
 
 ## How to use
 
-Run `frames2` in your terminal and select one of the options in the menu.
+Run `frames` in your terminal and select one of the options in the menu.
 
 ## Note
 

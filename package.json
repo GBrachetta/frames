@@ -1,6 +1,6 @@
 {
   "name": "@gbrachetta/frames",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "type": "module",
   "description": "A tool to scaffold boilerplates",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "nextjs"
   ],
   "bin": {
-    "frames2": "bin/frames2.js"
+    "frames": "bin/frames.js"
   },
   "author": "Guillermo Brachetta",
   "license": "MIT",

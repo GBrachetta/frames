@@ -14,7 +14,7 @@ const installMenu = (framework) => {
   const colors = {
     React: chalk.bgCyanBright.gray.bold,
     "Vite-React": chalk.bgYellowBright.gray.bold,
-    "Vite-Vue": chalk.bgRed.bold,
+    "Vite-Vue": chalk.bgRed.whiteBright.bold,
     "Next.js": chalk.bgGreenBright.gray.bold,
     Django: chalk.bgMagentaBright.bold,
   };

@@ -48,7 +48,6 @@ const menu = () => {
       let answer = JSON.stringify(answers.frame.slice(5, -5));
       let choice = answer.slice(1, -1);
 
-      console.log(choice);
       if (choice === "Exit") {
         shell.echo();
         shell.echo(chalk.cyan("Goodbye!"));
