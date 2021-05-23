@@ -11,23 +11,15 @@ import installVVue from "./install-vVue.js";
 
 const installMenu = (framework) => {
   // Coloring frameworks
-  const reactColor = chalk.bgCyanBright.gray.bold;
-  const vReactColor = chalk.bgYellowBright.gray.bold;
-  const vVueColor = chalk.bgRed.bold;
-  const nextColor = chalk.bgGreenBright.gray.bold;
-  const djangoColor = chalk.bgMagentaBright.bold;
+  const colors = {
+    React: chalk.bgCyanBright.gray.bold,
+    'Vite-React': chalk.bgYellowBright.gray.bold,
+    'Vite-Vue': chalk.bgRed.bold,
+    'Next.js': chalk.bgGreenBright.gray.bold,
+    Django: chalk.bgMagentaBright.bold,
+  };
 
-  let frameColor;
-
-  framework === '"React"'
-    ? (frameColor = reactColor)
-    : framework === '"Vite-React"'
-    ? (frameColor = vReactColor)
-    : framework === '"Vite-Vue"'
-    ? (frameColor = vVueColor)
-    : framework === '"Next.js"'
-    ? (frameColor = nextColor)
-    : (frameColor = djangoColor);
+  let frameColor = colors[framework];
 
   shell.echo();
   inquirer
@@ -77,6 +69,11 @@ const installMenu = (framework) => {
             let choice = JSON.stringify(answer.project.slice(5, -5));
             shell.echo();
             if (choice === '"Go ahead!"') {
+              
+              // Can do the same thing from the previous code optimization
+              // here, using an object and a lookup instead of cascading if
+              // statements.  Far better performance.
+              
               if (framework === '"React"') {
                 installReact(name.project);
               } else if (framework === '"Vite-React"') {
