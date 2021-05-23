@@ -13,9 +13,9 @@ const installMenu = (framework) => {
   // Coloring frameworks
   const colors = {
     React: chalk.bgCyanBright.gray.bold,
-    'Vite-React': chalk.bgYellowBright.gray.bold,
-    'Vite-Vue': chalk.bgRed.bold,
-    'Next.js': chalk.bgGreenBright.gray.bold,
+    "Vite-React": chalk.bgYellowBright.gray.bold,
+    "Vite-Vue": chalk.bgRed.bold,
+    "Next.js": chalk.bgGreenBright.gray.bold,
     Django: chalk.bgMagentaBright.bold,
   };
 
@@ -49,7 +49,7 @@ const installMenu = (framework) => {
               name: "project",
               loop: false,
               message: `Your ${frameColor(
-                ` ${framework.slice(1, -1)} `
+                ` ${framework} `
               )} app will be named ${frameColor(
                 ` ${name.project} `
               )} and it will be created in ${frameColor(
@@ -65,32 +65,31 @@ const installMenu = (framework) => {
               ],
             },
           ])
-          .then((answer) => {
-            let choice = JSON.stringify(answer.project.slice(5, -5));
+          .then((answers) => {
+            let answer = JSON.stringify(answers.project.slice(5, -5));
+            let choice = answer.slice(1, -1);
             shell.echo();
-            if (choice === '"Go ahead!"') {
-              
+            if (choice === "Go ahead!") {
               // Can do the same thing from the previous code optimization
               // here, using an object and a lookup instead of cascading if
               // statements.  Far better performance.
-              
-              if (framework === '"React"') {
+              if (framework === "React") {
                 installReact(name.project);
-              } else if (framework === '"Vite-React"') {
+              } else if (framework === "Vite-React") {
                 installVReact(name.project);
-              } else if (framework === '"Vite-Vue"') {
+              } else if (framework === "Vite-Vue") {
                 installVVue(name.project);
-              } else if (framework === '"Next.js"') {
+              } else if (framework === "Next.js") {
                 installNext(name.project);
-              } else if (framework === '"Django"') {
+              } else if (framework === "Django") {
                 installDjango(name.project);
               } else {
                 shell.echo(chalk.redBright("Invalid option!"));
                 return;
               }
-            } else if (choice === '"I regret that lame name!"') {
+            } else if (choice === "I regret that lame name!") {
               installMenu(framework);
-            } else if (choice === '"Please start over"') {
+            } else if (choice === "Please start over") {
               menu();
             } else {
               shell.echo(chalk.blueBright("Goodbye!"));

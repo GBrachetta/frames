@@ -45,14 +45,16 @@ const menu = () => {
       },
     ])
     .then((answers) => {
-      let choice = JSON.stringify(answers.frame.slice(5, -5));
+      let answer = JSON.stringify(answers.frame.slice(5, -5));
+      let choice = answer.slice(1, -1);
 
-      if (choice === '"Exit"') {
+      console.log(choice);
+      if (choice === "Exit") {
         shell.echo();
         shell.echo(chalk.cyan("Goodbye!"));
         shell.echo();
         return;
-      } else if (choice === '"Help"') {
+      } else if (choice === "Help") {
         helpMe();
       } else {
         installMenu(choice);
