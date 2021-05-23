@@ -10,6 +10,25 @@ import installVReact from "./install-vReact.js";
 import installVVue from "./install-vVue.js";
 
 const installMenu = (framework) => {
+  // Coloring frameworks
+  const reactColor = chalk.bgCyanBright.gray.bold;
+  const vReactColor = chalk.bgYellowBright.gray.bold;
+  const vVueColor = chalk.bgRed.bold;
+  const nextColor = chalk.bgGreenBright.gray.bold;
+  const djangoColor = chalk.bgMagentaBright.bold;
+
+  let frameColor;
+
+  framework === '"React"'
+    ? (frameColor = reactColor)
+    : framework === '"Vite-React"'
+    ? (frameColor = vReactColor)
+    : framework === '"Vite-Vue"'
+    ? (frameColor = vVueColor)
+    : framework === '"Next.js"'
+    ? (frameColor = nextColor)
+    : (frameColor = djangoColor);
+
   shell.echo();
   inquirer
     .prompt([
@@ -37,11 +56,13 @@ const installMenu = (framework) => {
               type: "list",
               name: "project",
               loop: false,
-              message: `Your ${chalk.cyan(
-                framework
-              )} app will be named ${chalk.cyan(
-                name.project
-              )} and it will be created in ${chalk.cyan(path)}. Continue?`,
+              message: `Your ${frameColor(
+                ` ${framework.slice(1, -1)} `
+              )} app will be named ${frameColor(
+                ` ${name.project} `
+              )} and it will be created in ${frameColor(
+                ` ${path} `
+              )}. Continue?`,
               choices: [
                 new inquirer.Separator(),
                 chalk.blueBright("Go ahead!"),

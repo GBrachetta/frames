@@ -4,26 +4,27 @@ import chalk from "chalk";
 const help = () => {
   shell.echo();
   shell.echo(chalk.redBright("Frames"), "scaffolds apps in different flavors.");
+  shell.echo();
   shell.echo(
-    `It assumes you have ${chalk.cyan(
+    `If ${chalk.cyan(
       "Visual Studio Code"
-    )} installed in your system`
+    )} is installed, it starts it once the app has been installed.`
   );
-  shell.echo("and starts the editor for the app created.");
   shell.echo();
   shell.echo(
     `${chalk.redBright("Frames")} also checks for the existence of ${chalk.cyan(
       "Homebrew"
-    )}`
+    )} and installs it if it's not present.`
   );
-  shell.echo("and installs it if it's not present.");
   shell.echo();
   shell.echo(
-    `It also checks for ${chalk.cyan("jq")} and eventually installs it.`
+    `${chalk.redBright("Frames")} also checks for ${chalk.cyan(
+      "jq"
+    )} and eventually installs it.`
   );
   shell.echo(
     `${chalk.cyan(
-      "jq"
+      "Jq"
     )} is used to modify json files according to the name chosen for the app.`
   );
   shell.echo();
@@ -34,7 +35,7 @@ const help = () => {
   );
   shell.echo();
   shell.echo(
-    `${chalk.redBright("Frames")} was created by ${chalk.blueBright(
+    `${chalk.redBright("Frames")} was created by ${chalk.blueBright.italic(
       "Guillermo Brachetta."
     )}`
   );

@@ -12,9 +12,13 @@ const menu = () => {
   shell.clear();
   shell.echo();
   shell.echo(chalk.redBright("======================================"));
-  console.log(figlet.textSync("Frames"));
+  shell.echo(chalk.yellow.bold(figlet.textSync("Frames ")));
   shell.echo(chalk.redBright("======================================"));
-  shell.echo(chalk.cyanBright("          WELCOME TO FRAMES!"));
+  shell.echo();
+  shell.echo(chalk.cyanBright.bold("          WELCOME TO FRAMES!          "));
+  shell.echo();
+  shell.echo(chalk.blueBright.italic("        The Scaffolding package"));
+  shell.echo();
   shell.echo(chalk.redBright("======================================"));
   shell.echo();
 
