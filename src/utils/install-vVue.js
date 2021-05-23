@@ -1,8 +1,18 @@
-import { execSync, spawnSync } from "child_process";
-import shell from "shelljs";
 import chalk from "chalk";
+import { execSync, spawnSync } from "child_process";
+import { sync as commandExists } from "command-exists";
+import shell from "shelljs";
+import { brewInstall, jqInstall } from "./utils.js";
 
 const installVVue = (name) => {
+  if (!commandExists("brew")) {
+    brewInstall();
+  }
+
+  if (!commandExists("jq")) {
+    jqInstall();
+  }
+
   shell.echo(
     chalk.cyan(
       `Installing ${name}. Please hold, this will take some moments...`

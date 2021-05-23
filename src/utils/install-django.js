@@ -1,8 +1,18 @@
-import { spawnSync } from "child_process";
-import shell from "shelljs";
 import chalk from "chalk";
+import { spawnSync } from "child_process";
+import { sync as commandExists } from "command-exists";
+import shell from "shelljs";
+import { brewInstall, pipenvInstall } from "./utils.js";
 
 const installDjango = (name) => {
+  if (!commandExists("brew")) {
+    brewInstall();
+  }
+
+  if (!commandExists("pipenv")) {
+    pipenvInstall();
+  }
+
   shell.echo(
     chalk.cyan(
       `Installing ${name}. Please hold, this will take some moments...`

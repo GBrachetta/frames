@@ -1,7 +1,10 @@
-import shell from "shelljs";
 import chalk from "chalk";
 import { spawn } from "child_process";
 import { Spinner } from "cli-spinner";
+import pressAnyKey from "press-any-key";
+import shell from "shelljs";
+import menu from "../index.js";
+import help from "./help.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
 
@@ -46,4 +49,13 @@ export const pipenvInstall = () => {
     await pipenvInstall("brew install pipenv");
   };
   pipenvI();
+};
+
+export const helpMe = () => {
+  help();
+  pressAnyKey(
+    chalk.greenBright("Press any key to go back to the menu...")
+  ).then(() => {
+    menu();
+  });
 };
