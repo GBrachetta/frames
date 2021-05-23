@@ -52,15 +52,15 @@ const menu = () => {
       let choice = JSON.stringify(answers.frame.slice(5, -5));
 
       if (choice === '"React"') {
-        react();
+        react(choice);
       } else if (choice === '"Vite-React"') {
-        vReact();
+        vReact(choice);
       } else if (choice === '"Vite-Vue"') {
-        vVue();
+        vVue(choice);
       } else if (choice === '"Next.js"') {
-        next();
+        next(choice);
       } else if (choice === '"Django"') {
-        django();
+        django(choice);
       } else if (choice === '"Help"') {
         helpMe();
       } else {
@@ -71,7 +71,7 @@ const menu = () => {
     });
 };
 
-const react = () => {
+const react = (framework) => {
   shell.echo();
   inquirer
     .prompt([
@@ -86,10 +86,10 @@ const react = () => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
         shell.echo(chalk.redBright("The name of the app cannot be empty!"));
-        react();
+        react(framework);
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
-        react();
+        react(framework);
       } else {
         inquirer
           .prompt([
@@ -98,7 +98,7 @@ const react = () => {
               name: "project",
               loop: false,
               message: `Your ${chalk.cyan(
-                "React"
+                framework
               )} app will be named ${chalk.cyan(
                 name.project
               )} and it will be created in ${chalk.cyan(path)}. Continue?`,
@@ -118,7 +118,7 @@ const react = () => {
             if (choice === '"Go ahead!"') {
               reactInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
-              react();
+              react(framework);
             } else if (choice === '"Please start over"') {
               menu();
             } else {
@@ -130,7 +130,7 @@ const react = () => {
     });
 };
 
-const vReact = () => {
+const vReact = (framework) => {
   shell.echo();
   inquirer
     .prompt([
@@ -145,10 +145,10 @@ const vReact = () => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
         shell.echo(chalk.redBright("The name of the app cannot be empty!"));
-        react();
+        vReact(framework);
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
-        react();
+        vReact(framework);
       } else {
         inquirer
           .prompt([
@@ -157,7 +157,7 @@ const vReact = () => {
               name: "project",
               loop: false,
               message: `Your ${chalk.yellow(
-                "Vite-React"
+                framework
               )} app will be named ${chalk.yellow(
                 name.project
               )} and it will be created in ${chalk.yellow(path)}. Continue?`,
@@ -177,7 +177,7 @@ const vReact = () => {
             if (choice === '"Go ahead!"') {
               vReactInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
-              vReact();
+              vReact(framework);
             } else if (choice === '"Please start over"') {
               menu();
             } else {
@@ -189,7 +189,7 @@ const vReact = () => {
     });
 };
 
-const vVue = () => {
+const vVue = (framework) => {
   shell.echo();
   inquirer
     .prompt([
@@ -204,10 +204,10 @@ const vVue = () => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
         shell.echo(chalk.redBright("The name of the app cannot be empty!"));
-        react();
+        vVue(framework);
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
-        react();
+        vVue(framework);
       } else {
         inquirer
           .prompt([
@@ -216,7 +216,7 @@ const vVue = () => {
               name: "project",
               loop: false,
               message: `Your ${chalk.redBright(
-                "Vite-Vue"
+                framework
               )} app will be named ${chalk.redBright(
                 name.project
               )} and it will be created in ${chalk.redBright(path)}. Continue?`,
@@ -236,7 +236,7 @@ const vVue = () => {
             if (choice === '"Go ahead!"') {
               vVueInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
-              vVue();
+              vVue(framework);
             } else if (choice === '"Please start over"') {
               menu();
             } else {
@@ -248,7 +248,7 @@ const vVue = () => {
     });
 };
 
-const next = () => {
+const next = (framework) => {
   shell.echo();
   inquirer
     .prompt([
@@ -263,10 +263,10 @@ const next = () => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
         shell.echo(chalk.redBright("The name of the app cannot be empty!"));
-        react();
+        next(framework);
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
-        react();
+        next(framework);
       } else {
         inquirer
           .prompt([
@@ -275,7 +275,7 @@ const next = () => {
               name: "project",
               loop: false,
               message: `Your ${chalk.greenBright(
-                "Next.js"
+                framework
               )} app will be named ${chalk.greenBright(
                 name.project
               )} and it will be created in ${chalk.greenBright(
@@ -297,7 +297,7 @@ const next = () => {
             if (choice === '"Go ahead!"') {
               nextInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
-              next();
+              next(framework);
             } else if (choice === '"Please start over"') {
               menu();
             } else {
@@ -309,7 +309,7 @@ const next = () => {
     });
 };
 
-const django = () => {
+const django = (framework) => {
   shell.echo();
   inquirer
     .prompt([
@@ -324,10 +324,10 @@ const django = () => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
         shell.echo(chalk.redBright("The name of the app cannot be empty!"));
-        react();
+        django(framework);
       } else if (fs.existsSync(path)) {
         shell.echo(chalk.redBright("The directory already exists!"));
-        react();
+        django(framework);
       } else {
         inquirer
           .prompt([
@@ -336,7 +336,7 @@ const django = () => {
               name: "project",
               loop: false,
               message: `Your ${chalk.magentaBright(
-                "Django"
+                framework
               )} app will be named ${chalk.magentaBright(
                 name.project
               )} and it will be created in ${chalk.magentaBright(
@@ -358,7 +358,7 @@ const django = () => {
             if (choice === '"Go ahead!"') {
               DjangoInstall(name.project);
             } else if (choice === '"I regret that lame name!"') {
-              django();
+              django(framework);
             } else if (choice === '"Please start over"') {
               menu();
             } else {
