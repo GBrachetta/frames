@@ -8,7 +8,7 @@ const { which } = shell;
 
 export const copyTemplateFiles = async (options) => {
   return copy(options.templateDir, options.targetDir, {
-    clobber: false,
+    clobber: true,
   });
 };
 
