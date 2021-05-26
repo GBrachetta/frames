@@ -7,21 +7,10 @@ import shell from "shelljs";
 import "shelljs-plugin-clear";
 import stripAnsi from "strip-ansi";
 import installMenu from "./utils/install-menu.js";
-import { framesMenu, helpMe } from "./utils/utils.js";
+import { framesMenu, helpMe, mainMenu } from "./utils/utils.js";
 
-const menu = () => {
-  shell.clear();
-  shell.echo();
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo(chalk.yellow.bold(figlet.textSync("Frames ")));
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo();
-  shell.echo(chalk.cyanBright.bold("          WELCOME TO FRAMES!          "));
-  shell.echo();
-  shell.echo(chalk.blueBright.italic("        The Scaffolding package"));
-  shell.echo();
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo();
+const menu = async () => {
+  await mainMenu();
 
   inquirer
     .prompt([
