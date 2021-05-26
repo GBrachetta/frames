@@ -1,38 +1,48 @@
 import chalk from "chalk";
-import { spawn } from "child_process";
-import { Spinner } from "cli-spinner";
 import figlet from "figlet";
-import pressAnyKey from "press-any-key";
 import shell from "shelljs";
+import pressAnyKey from "press-any-key";
 import menu from "../cli.js";
-import help from "./help.js";
-const spinner = new Spinner("%s");
-spinner.setSpinnerString(18);
 
-export const brewInstall = () => {
-  shell.echo(chalk.cyan("Brew does not exist. Installing..."));
-  const brewInstall = spawn("/bin/bash", [
-    "-c",
-    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)",
-  ]);
-  brewInstall.stdout;
-};
-
-export const pipenvInstall = () => {
-  shell.echo(chalk.cyan("Pipenv does not exist. Installing..."));
-  const pipenvInstall = (command, onSuccess) => {
-    return new Promise((resolve, reject) => {
-      const process = spawn(command, { shell: true });
-      spinner.start();
-      process.on("exit", () => {
-        spinner.stop();
-      });
-    });
-  };
-  const pipenvI = async () => {
-    await pipenvInstall("brew install pipenv");
-  };
-  pipenvI();
+const help = () => {
+  shell.echo();
+  shell.echo(
+    chalk.redBright.bold("Frames"),
+    "scaffolds apps in different flavors."
+  );
+  shell.echo();
+  shell.echo(
+    `If ${chalk.cyan.bold(
+      "Visual Studio Code"
+    )} is installed, it starts it once the app has been installed.`
+  );
+  shell.echo();
+  shell.echo(
+    `${chalk.redBright.bold(
+      "Frames"
+    )} checks for the existence of ${chalk.cyan.bold(
+      "Pipenv"
+    )} and installs it if it's not present.`
+  );
+  shell.echo();
+  shell.echo(
+    `Make sure you run ${chalk.redBright.bold(
+      "Frames"
+    )} in the parent directory of the app you want to scaffold.`
+  );
+  shell.echo();
+  shell.echo(
+    `${chalk.redBright.bold(
+      "Frames"
+    )} was created by ${chalk.blueBright.italic.bold("Guillermo Brachetta.")}`
+  );
+  shell.echo();
+  shell.echo("Feel free to use, distribute and contribute:");
+  shell.echo();
+  shell.echo(
+    `${chalk.cyanBright.bold("https://github.com/GBrachetta/frames")}`
+  );
+  shell.echo();
 };
 
 export const helpMe = () => {

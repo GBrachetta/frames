@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import Listr from "listr";
 import path from "path";
 import {
@@ -9,8 +10,8 @@ import {
   installPythonDeps,
   installPythonDevDeps,
   renameDjangoApp,
-  activateVenv,
   openVSC,
+  installPipenv,
 } from "./installer-helpers.js";
 import { goodbye } from "./utils.js";
 
@@ -83,6 +84,10 @@ export const installDjango = async (name) => {
       task: () => copyTemplateFiles(options),
     },
     {
+      title: "Check if Pipenv exists",
+      task: () => installPipenv(options),
+    },
+    {
       title: "Install dependencies",
       task: () => installPythonDeps(options),
     },
@@ -91,7 +96,7 @@ export const installDjango = async (name) => {
       task: () => installPythonDevDeps(options),
     },
     {
-      title: `Rename app to ${options.name}`,
+      title: `Rename app to ${chalk.cyanBright(options.name)}`,
       task: () => renameDjangoApp(options),
     },
     {
@@ -106,11 +111,12 @@ export const installDjango = async (name) => {
       title: "Commit files",
       task: () => gitCommit(options),
     },
+    {
+      title: "Start editor",
+      task: () => openVSC(options),
+    },
   ]);
 
   await tasks.run();
   goodbye(options.name);
-  // await execa("code", ["."], {
-  //   cwd: options.targetDir,
-  // });
 };

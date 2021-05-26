@@ -58,16 +58,30 @@ export const renameDjangoApp = async (options) => {
   );
 };
 
-export const activateVenv = async (options) => {
-  return await execa("activate", {
-    cwd: options.targetDir,
-  });
-};
-
 export const openVSC = async (options) => {
   if (which("code")) {
     return await execa("code", ["."], {
       cwd: options.targetDir,
     });
+  }
+};
+
+export const installPipenv = async (options) => {
+  if (!which("brew")) {
+    await execa(
+      "/bin/bash",
+      [
+        "-c",
+        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)",
+      ],
+      {
+        cwd: options.targetDir,
+      }
+    );
+    if (!which("pipenv")) {
+      return await execa("brew", ["install", "pipenv"], {
+        cwd: options.targetDir,
+      });
+    }
   }
 };

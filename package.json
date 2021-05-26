@@ -1,6 +1,6 @@
 {
   "name": "@gbrachetta/frames",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "type": "module",
   "description": "A tool to scaffold boilerplates",
   "main": "cli.js",
@@ -28,8 +28,6 @@
   "homepage": "https://github.com/GBrachetta/frames#readme",
   "dependencies": {
     "chalk": "^4.1.1",
-    "cli-spinner": "^0.2.10",
-    "command-exists": "^1.2.9",
     "execa": "^5.0.0",
     "figlet": "^1.5.0",
     "inquirer": "^8.0.0",

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2021-05-27
+
+- Installs are async
+- Install all boilerplates from templates (no need for jq and long commands to modify package.json)
+- Use `listr` to display current progress
+- Use `ncp` to asynchronous recursive copy of templates
+
 ## [1.6.0] - 2021-05-23
 
 - Rename to "frames"
