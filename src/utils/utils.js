@@ -7,6 +7,8 @@ import menu from "../index.js";
 import help from "./help.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
+import inquirer from "inquirer";
+import figlet from "figlet";
 
 export const brewInstall = () => {
   shell.echo(chalk.cyan("Brew does not exist. Installing..."));
@@ -59,3 +61,29 @@ export const helpMe = () => {
     menu();
   });
 };
+
+const menuSeparator = new inquirer.Separator(
+  chalk.blueBright("————————————————————————————")
+);
+
+export const framesMenu = [
+  menuSeparator,
+  chalk.cyanBright.bold("React"),
+  chalk.cyanBright.bold("Vite-React"),
+  chalk.cyanBright.bold("Vite-Vue"),
+  chalk.cyanBright.bold("Next.js"),
+  chalk.cyanBright.bold("Django"),
+  menuSeparator,
+  chalk.greenBright.bold("Help"),
+  chalk.redBright.bold("Exit"),
+  menuSeparator,
+];
+
+export const projectNameMenu = [
+  menuSeparator,
+  chalk.blueBright("Go ahead!"),
+  chalk.blueBright("I regret that lame name!"),
+  chalk.blueBright("Please start over"),
+  chalk.redBright.bold("Take me outta here!"),
+  menuSeparator,
+];

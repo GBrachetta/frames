@@ -5,9 +5,9 @@ import figlet from "figlet";
 import inquirer from "inquirer";
 import shell from "shelljs";
 import "shelljs-plugin-clear";
-import installMenu from "./utils/install-menu.js";
-import { helpMe } from "./utils/utils.js";
 import stripAnsi from "strip-ansi";
+import installMenu from "./utils/install-menu.js";
+import { framesMenu, helpMe } from "./utils/utils.js";
 
 const menu = () => {
   shell.clear();
@@ -31,18 +31,7 @@ const menu = () => {
         message: chalk.blueBright("Please select your framework"),
         loop: false,
         pageSize: 10,
-        choices: [
-          new inquirer.Separator(),
-          chalk.cyanBright.bold("React"),
-          chalk.cyanBright.bold("Vite-React"),
-          chalk.cyanBright.bold("Vite-Vue"),
-          chalk.cyanBright.bold("Next.js"),
-          chalk.cyanBright.bold("Django"),
-          new inquirer.Separator(),
-          chalk.greenBright.bold("Help"),
-          chalk.redBright.bold("Exit"),
-          new inquirer.Separator(),
-        ],
+        choices: framesMenu,
       },
     ])
     .then((answers) => {

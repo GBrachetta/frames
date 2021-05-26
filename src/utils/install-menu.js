@@ -2,13 +2,14 @@ import chalk from "chalk";
 import fs from "fs";
 import inquirer from "inquirer";
 import shell from "shelljs";
+import stripAnsi from "strip-ansi";
 import menu from "../index.js";
 import installDjango from "./install-django.js";
 import installNext from "./install-next.js";
 import installReact from "./install-react.js";
 import installVReact from "./install-vReact.js";
 import installVVue from "./install-vVue.js";
-import stripAnsi from "strip-ansi";
+import { projectNameMenu } from "./utils.js";
 
 const installMenu = (framework) => {
   // Coloring frameworks
@@ -60,23 +61,13 @@ const installMenu = (framework) => {
               )} and it will be created in ${frameColor(
                 ` ${path} `
               )}. Continue?`,
-              choices: [
-                new inquirer.Separator(),
-                chalk.blueBright("Go ahead!"),
-                chalk.blueBright("I regret that lame name!"),
-                chalk.blueBright("Please start over"),
-                chalk.redBright.bold("Take me outta here!"),
-                new inquirer.Separator(),
-              ],
+              choices: projectNameMenu,
             },
           ])
           .then((answers) => {
             let choice = stripAnsi(answers.project);
             shell.echo();
             if (choice === "Go ahead!") {
-              // Can do the same thing from the previous code optimization
-              // here, using an object and a lookup instead of cascading if
-              // statements.  Far better performance.
               if (framework === "React") {
                 installReact(name.project);
               } else if (framework === "Vite-React") {
