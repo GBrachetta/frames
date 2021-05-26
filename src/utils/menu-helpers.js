@@ -22,9 +22,9 @@ export const framesMenu = [
 
 export const projectNameMenu = [
   menuSeparator,
-  chalk.blueBright("Go ahead!"),
-  chalk.blueBright("I regret that lame name!"),
-  chalk.blueBright("Please start over"),
+  chalk.cyanBright.bold("Go ahead!"),
+  chalk.cyanBright.bold("I regret that lame name!"),
+  chalk.cyanBright.bold("Please start over"),
   chalk.redBright.bold("Take me outta here!"),
   menuSeparator,
 ];

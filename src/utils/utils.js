@@ -4,7 +4,7 @@ import { Spinner } from "cli-spinner";
 import figlet from "figlet";
 import pressAnyKey from "press-any-key";
 import shell from "shelljs";
-import menu from "../index.js";
+import menu from "../cli.js";
 import help from "./help.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
@@ -16,23 +16,6 @@ export const brewInstall = () => {
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)",
   ]);
   brewInstall.stdout;
-};
-
-export const jqInstall = () => {
-  shell.echo(chalk.cyan("Jq does not exist. Installing..."));
-  const jqInstall = (command, onSuccess) => {
-    return new Promise((resolve, reject) => {
-      const process = spawn(command, { shell: true });
-      spinner.start();
-      process.on("exit", () => {
-        spinner.stop();
-      });
-    });
-  };
-  const jqI = async () => {
-    await jqInstall("brew install jq");
-  };
-  jqI();
 };
 
 export const pipenvInstall = () => {
@@ -67,7 +50,9 @@ export const goodbye = (name) => {
   console.log();
   console.log(
     chalk.cyanBright.bold(
-      `Your app ${name} is ready. Now go and create a great app!`
+      `Your app is ready at ${chalk.bgBlue.whiteBright(
+        ` ${process.cwd()}/${name} `
+      )}. Now go and create a great app!`
     )
   );
   console.log();

@@ -1,8 +1,10 @@
 import execa from "execa";
 import ncp from "ncp";
 import { promisify } from "util";
+import shell from "shelljs";
 
 const copy = promisify(ncp);
+const { which } = shell;
 
 export const copyTemplateFiles = async (options) => {
   return copy(options.templateDir, options.targetDir, {
@@ -63,7 +65,9 @@ export const activateVenv = async (options) => {
 };
 
 export const openVSC = async (options) => {
-  return await execa("code", ["."], {
-    cwd: options.targetDir,
-  });
+  if (which("code")) {
+    return await execa("code", ["."], {
+      cwd: options.targetDir,
+    });
+  }
 };

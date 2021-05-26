@@ -4,14 +4,8 @@ import fs from "fs";
 import inquirer from "inquirer";
 import shell from "shelljs";
 import stripAnsi from "strip-ansi";
-import menu from "../index.js";
-import {
-  installDjango,
-  installNext,
-  installReact,
-  installViteReact,
-  installViteVue,
-} from "./installers.js";
+import menu from "../cli.js";
+import { installDjango, installReactive } from "./installers.js";
 import { projectNameMenu } from "./menu-helpers.js";
 
 const installMenu = (framework) => {
@@ -21,7 +15,7 @@ const installMenu = (framework) => {
     "Vite-React": chalk.bgYellowBright.gray.bold,
     "Vite-Vue": chalk.bgRed.whiteBright.bold,
     "Next.js": chalk.bgGreenBright.gray.bold,
-    Django: chalk.bgMagentaBright.bold,
+    Django: chalk.bgMagentaBright.blackBright.bold,
   };
 
   let frameColor = colors[framework];
@@ -72,13 +66,13 @@ const installMenu = (framework) => {
             shell.echo();
             if (choice === "Go ahead!") {
               if (framework === "React") {
-                installReact(name.project);
+                installReactive(name.project, "react");
               } else if (framework === "Vite-React") {
-                installViteReact(name.project);
+                installReactive(name.project, "vite-react");
               } else if (framework === "Vite-Vue") {
-                installViteVue(name.project);
+                installReactive(name.project, "vite-vue");
               } else if (framework === "Next.js") {
-                installNext(name.project);
+                installReactive(name.project, "nextjs");
               } else if (framework === "Django") {
                 installDjango(name.project);
               } else {
