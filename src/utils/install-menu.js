@@ -1,15 +1,18 @@
 import chalk from "chalk";
+import figlet from "figlet";
 import fs from "fs";
 import inquirer from "inquirer";
 import shell from "shelljs";
 import stripAnsi from "strip-ansi";
 import menu from "../index.js";
-import installDjango from "./install-django.js";
-import installNext from "./install-next.js";
-import installReact from "./install-react.js";
-import installVReact from "./install-vReact.js";
-import installVVue from "./install-vVue.js";
-import { projectNameMenu } from "./utils.js";
+import {
+  installDjango,
+  installNext,
+  installReact,
+  installViteReact,
+  installViteVue,
+} from "./installers.js";
+import { projectNameMenu } from "./menu-helpers.js";
 
 const installMenu = (framework) => {
   // Coloring frameworks
@@ -71,9 +74,9 @@ const installMenu = (framework) => {
               if (framework === "React") {
                 installReact(name.project);
               } else if (framework === "Vite-React") {
-                installVReact(name.project);
+                installViteReact(name.project);
               } else if (framework === "Vite-Vue") {
-                installVVue(name.project);
+                installViteVue(name.project);
               } else if (framework === "Next.js") {
                 installNext(name.project);
               } else if (framework === "Django") {
@@ -87,7 +90,7 @@ const installMenu = (framework) => {
             } else if (choice === "Please start over") {
               menu();
             } else {
-              shell.echo(chalk.blueBright("Goodbye!"));
+              shell.echo(chalk.yellowBright.bold(figlet.textSync("Bye!")));
               shell.echo();
             }
           });

@@ -1,14 +1,13 @@
 import chalk from "chalk";
 import { spawn } from "child_process";
 import { Spinner } from "cli-spinner";
+import figlet from "figlet";
 import pressAnyKey from "press-any-key";
 import shell from "shelljs";
 import menu from "../index.js";
 import help from "./help.js";
 const spinner = new Spinner("%s");
 spinner.setSpinnerString(18);
-import inquirer from "inquirer";
-import figlet from "figlet";
 
 export const brewInstall = () => {
   shell.echo(chalk.cyan("Brew does not exist. Installing..."));
@@ -62,43 +61,16 @@ export const helpMe = () => {
   });
 };
 
-const menuSeparator = new inquirer.Separator(
-  chalk.blueBright("————————————————————————————")
-);
-
-export const framesMenu = [
-  menuSeparator,
-  chalk.cyanBright.bold("React"),
-  chalk.cyanBright.bold("Vite-React"),
-  chalk.cyanBright.bold("Vite-Vue"),
-  chalk.cyanBright.bold("Next.js"),
-  chalk.cyanBright.bold("Django"),
-  menuSeparator,
-  chalk.greenBright.bold("Help"),
-  chalk.redBright.bold("Exit"),
-  menuSeparator,
-];
-
-export const projectNameMenu = [
-  menuSeparator,
-  chalk.blueBright("Go ahead!"),
-  chalk.blueBright("I regret that lame name!"),
-  chalk.blueBright("Please start over"),
-  chalk.redBright.bold("Take me outta here!"),
-  menuSeparator,
-];
-
-export const mainMenu = async () => {
-  shell.clear();
-  shell.echo();
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo(chalk.yellow.bold(figlet.textSync("Frames ")));
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo();
-  shell.echo(chalk.cyanBright.bold("          WELCOME TO FRAMES!          "));
-  shell.echo();
-  shell.echo(chalk.blueBright.italic.bold("        The Scaffolding package"));
-  shell.echo();
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo();
+export const goodbye = (name) => {
+  console.log();
+  console.log(chalk.greenBright.bold("All done!"));
+  console.log();
+  console.log(
+    chalk.cyanBright.bold(
+      `Your app ${name} is ready. Now go and create a great app!`
+    )
+  );
+  console.log();
+  console.log(chalk.yellowBright.bold(figlet.textSync("Bye!")));
+  console.log();
 };
