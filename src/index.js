@@ -7,6 +7,7 @@ import shell from "shelljs";
 import "shelljs-plugin-clear";
 import installMenu from "./utils/install-menu.js";
 import { helpMe } from "./utils/utils.js";
+import stripAnsi from "strip-ansi";
 
 const menu = () => {
   shell.clear();
@@ -32,21 +33,20 @@ const menu = () => {
         pageSize: 10,
         choices: [
           new inquirer.Separator(),
-          chalk.cyanBright("React"),
-          chalk.cyanBright("Vite-React"),
-          chalk.cyanBright("Vite-Vue"),
-          chalk.cyanBright("Next.js"),
-          chalk.cyanBright("Django"),
+          chalk.cyanBright.bold("React"),
+          chalk.cyanBright.bold("Vite-React"),
+          chalk.cyanBright.bold("Vite-Vue"),
+          chalk.cyanBright.bold("Next.js"),
+          chalk.cyanBright.bold("Django"),
           new inquirer.Separator(),
-          chalk.greenBright("Help"),
-          chalk.redBright("Exit"),
+          chalk.greenBright.bold("Help"),
+          chalk.redBright.bold("Exit"),
           new inquirer.Separator(),
         ],
       },
     ])
     .then((answers) => {
-      let answer = JSON.stringify(answers.frame.slice(5, -5));
-      let choice = answer.slice(1, -1);
+      let choice = stripAnsi(answers.frame);
 
       if (choice === "Exit") {
         shell.echo();

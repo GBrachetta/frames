@@ -34,6 +34,7 @@
     "inquirer": "^8.0.0",
     "press-any-key": "^0.1.1",
     "shelljs": "^0.8.4",
-    "shelljs-plugin-clear": "^0.2.0"
+    "shelljs-plugin-clear": "^0.2.0",
+    "strip-ansi": "^6.0.0"
   }
 }

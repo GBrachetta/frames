@@ -8,6 +8,7 @@ import installNext from "./install-next.js";
 import installReact from "./install-react.js";
 import installVReact from "./install-vReact.js";
 import installVVue from "./install-vVue.js";
+import stripAnsi from "strip-ansi";
 
 const installMenu = (framework) => {
   // Coloring frameworks
@@ -28,7 +29,9 @@ const installMenu = (framework) => {
         type: "input",
         name: "project",
         message: chalk.blueBright(
-          `Please choose the name of your ${framework.slice(1, -1)} project`
+          `Please choose the name of your ${frameColor(
+            ` ${framework} `
+          )} project`
         ),
       },
     ])
@@ -36,10 +39,12 @@ const installMenu = (framework) => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(chalk.redBright("The name of the app cannot be empty!"));
+        shell.echo(
+          chalk.redBright.bold("The name of the app cannot be empty!")
+        );
         installMenu(framework);
       } else if (fs.existsSync(path)) {
-        shell.echo(chalk.redBright("The directory already exists!"));
+        shell.echo(chalk.redBright.bold("The directory already exists!"));
         installMenu(framework);
       } else {
         inquirer
@@ -60,14 +65,13 @@ const installMenu = (framework) => {
                 chalk.blueBright("Go ahead!"),
                 chalk.blueBright("I regret that lame name!"),
                 chalk.blueBright("Please start over"),
-                chalk.redBright("Take me outta here!"),
+                chalk.redBright.bold("Take me outta here!"),
                 new inquirer.Separator(),
               ],
             },
           ])
           .then((answers) => {
-            let answer = JSON.stringify(answers.project.slice(5, -5));
-            let choice = answer.slice(1, -1);
+            let choice = stripAnsi(answers.project);
             shell.echo();
             if (choice === "Go ahead!") {
               // Can do the same thing from the previous code optimization
