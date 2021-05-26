@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+dj-database-url = "*"
+python-dotenv = "*"
+django-split-settings = "*"
+django-storages = "*"
+boto3 = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+pylint-django = "*"
+pylint = "*"
+black = "*"
+django-debug-toolbar = "*"
+pep8 = "*"
+autopep8 = "*"
+flake8 = "*"
+django-debug-toolbar-request-history = "*"
+django-mail-panel = "*"
+isort = "*"
+
+[requires]
+python_version = "3"
+
+[pipenv]
+allow_prereleases = true
