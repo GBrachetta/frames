@@ -9,7 +9,7 @@ import { installDjango, installReactive } from "./installers.js";
 import { projectNameMenu } from "./menu-helpers.js";
 
 const installMenu = (framework) => {
-  // Coloring frameworks
+  // Colors that identify each framework
   const colors = {
     React: chalk.bgCyanBright.gray.bold,
     "Vite-React": chalk.bgYellowBright.gray.bold,
@@ -18,7 +18,8 @@ const installMenu = (framework) => {
     Django: chalk.bgMagentaBright.blackBright.bold,
   };
 
-  let frameColor = colors[framework];
+  const frameColor = colors[framework];
+  const error = chalk.redBright.bold;
 
   shell.echo();
   inquirer
@@ -37,12 +38,10 @@ const installMenu = (framework) => {
       shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
       if (name.project === "") {
-        shell.echo(
-          chalk.redBright.bold("The name of the app cannot be empty!")
-        );
+        shell.echo(error("The name of the app cannot be empty!"));
         installMenu(framework);
       } else if (fs.existsSync(path)) {
-        shell.echo(chalk.redBright.bold("The directory already exists!"));
+        shell.echo(error("The directory already exists!"));
         installMenu(framework);
       } else {
         inquirer
