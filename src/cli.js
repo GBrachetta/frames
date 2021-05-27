@@ -24,17 +24,11 @@ const menu = async () => {
     ])
     .then((answers) => {
       let choice = stripAnsi(answers.frame);
-
-      if (choice === "Exit") {
-        shell.echo();
-        shell.echo(chalk.yellowBright.bold(figlet.textSync("Bye!")));
-        shell.echo();
-        return;
-      } else if (choice === "Help") {
-        helpMe();
-      } else {
-        installMenu(choice);
-      }
+      choice === "Exit"
+        ? goodbye()
+        : choice === "Help"
+        ? helpMe()
+        : installMenu(choice);
     });
 };
 
