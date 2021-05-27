@@ -1,15 +1,18 @@
 import execa from "execa";
-import ncp from "ncp";
-import { promisify } from "util";
+import fse from "fs-extra";
 import shell from "shelljs";
 
-const copy = promisify(ncp);
 const { which } = shell;
 
 export const copyTemplateFiles = async (options) => {
-  return copy(options.templateDir, options.targetDir, {
-    clobber: true,
-  });
+  return await fse.copy(options.templateDir, options.targetDir);
+};
+
+export const renameGitignore = async (options) => {
+  return await fse.rename(
+    `${options.targetDir}/gitignore`,
+    `${options.targetDir}/.gitignore`
+  );
 };
 
 export const installDeps = async (options) => {
