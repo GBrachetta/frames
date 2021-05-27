@@ -32,14 +32,14 @@ export const projectNameMenu = [
 export const mainMenu = async () => {
   shell.clear();
   shell.echo();
-  shell.echo(chalk.redBright("======================================"));
-  shell.echo(chalk.yellow.bold(figlet.textSync("Frames ")));
-  shell.echo(chalk.redBright("======================================"));
+  shell.echo(chalk.redBright("  ——————————————————————————————————————"));
+  shell.echo(chalk.yellow.bold(figlet.textSync("  Frames ")));
+  shell.echo(chalk.redBright("  ——————————————————————————————————————"));
   shell.echo();
-  shell.echo(chalk.cyanBright.bold("          WELCOME TO FRAMES!          "));
+  shell.echo(chalk.cyanBright.bold("            WELCOME TO FRAMES!          "));
   shell.echo();
-  shell.echo(chalk.blueBright.italic.bold("        The Scaffolding package"));
+  shell.echo(chalk.blueBright.italic.bold("          The Scaffolding package"));
   shell.echo();
-  shell.echo(chalk.redBright("======================================"));
+  shell.echo(chalk.redBright("  ——————————————————————————————————————"));
   shell.echo();
 };
