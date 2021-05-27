@@ -1,12 +1,10 @@
 import chalk from "chalk";
-import figlet from "figlet";
 import inquirer from "inquirer";
-import shell from "shelljs";
 import "shelljs-plugin-clear";
 import stripAnsi from "strip-ansi";
 import installMenu from "./utils/install-menu.js";
 import { framesMenu, mainMenu } from "./utils/menu-helpers.js";
-import { helpMe } from "./utils/utils.js";
+import { goodbye, helpMe } from "./utils/utils.js";
 
 const menu = async () => {
   await mainMenu();
