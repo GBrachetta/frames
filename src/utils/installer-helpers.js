@@ -1,6 +1,7 @@
 import execa from "execa";
 import fse from "fs-extra";
 import shell from "shelljs";
+import { failedPipenv, noPython } from "./utils.js";
 
 const { which } = shell;
 
@@ -34,6 +35,24 @@ export const gitCommit = async ({ targetDir }) => {
   return await execa("git", ["commit", "-m", "initial commit by Frames"], {
     cwd: targetDir,
   });
+};
+
+export const checkPython = async () => {
+  if (!which("pip3")) {
+    noPython();
+  }
+};
+
+export const installPipenv = async ({ targetDir }) => {
+  if (!which("pipenv")) {
+    try {
+      return await execa("pip3", ["install", "--user", "pipenv"], {
+        cwd: targetDir,
+      });
+    } catch (error) {
+      failedPipenv(error);
+    }
+  }
 };
 
 export const installPythonDeps = async ({ targetDir }) => {

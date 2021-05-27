@@ -2,16 +2,17 @@ import chalk from "chalk";
 import Listr from "listr";
 import path from "path";
 import {
+  checkPython,
   copyTemplateFiles,
   gitAdd,
   gitCommit,
   gitInit,
   installDeps,
+  installPipenv,
   installPythonDeps,
   installPythonDevDeps,
-  renameDjangoApp,
   openVSC,
-  installPipenv,
+  renameDjangoApp,
   renameGitignore,
 } from "./installer-helpers.js";
 import { goodbye } from "./utils.js";
@@ -85,16 +86,20 @@ export const installDjango = async (name) => {
 
   const tasks = new Listr([
     {
+      title: "Check if Python is installed",
+      task: () => checkPython(options),
+    },
+    {
+      title: "Check if Pipenv exists",
+      task: () => installPipenv(options),
+    },
+    {
       title: "Copy project files",
       task: () => copyTemplateFiles(options),
     },
     {
       title: "Generate gitignore",
       task: () => renameGitignore(options),
-    },
-    {
-      title: "Check if Pipenv exists",
-      task: () => installPipenv(options),
     },
     {
       title: "Install dependencies",

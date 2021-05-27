@@ -52,3 +52,23 @@ export const goodbye = (name) => {
   console.log(chalk.yellowBright.bold(figlet.textSync("Bye!")));
   console.log();
 };
+
+export const noPython = () => {
+  shell.echo();
+  shell.echo(
+    chalk.redBright.bold("Must have Python > 3.6 installed to run Django!")
+  );
+  shell.echo();
+  process.exit(1);
+};
+
+export const failedPipenv = (error) => {
+  shell.echo();
+  shell.echo(chalk.redBright.bold("Failed to install Pipenv, please install!"));
+  shell.echo();
+  shell.echo(chalk.greenBright.bold("Visit: https://pypi.org/project/pipenv/"));
+  shell.echo();
+  shell.echo(chalk.redBright.bold("Message:"), chalk.cyanBright(error.message));
+  shell.echo();
+  process.exit(1);
+};
