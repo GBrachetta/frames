@@ -90,7 +90,7 @@ export const installDjango = async (name) => {
       task: () => checkPython(options),
     },
     {
-      title: "Check if Pipenv exists",
+      title: "Check if Pipenv is installed",
       task: () => installPipenv(options),
     },
     {
