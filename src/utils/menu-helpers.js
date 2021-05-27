@@ -1,6 +1,6 @@
-import inquirer from "inquirer";
 import chalk from "chalk";
 import figlet from "figlet";
+import inquirer from "inquirer";
 import shell from "shelljs";
 
 const menuSeparator = new inquirer.Separator(

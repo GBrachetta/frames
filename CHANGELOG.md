@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2021-05-27
+
+- Refactor: script now uses just a single default installer function with parameters
+- Goodbye function now uses the colors of the framework installed
+
 ## [3.0.0] - 2021-05-27
 
 - Script is crossplatform: it relies on pip3 to install pipenv if not present, rather than Homebrew

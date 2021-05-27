@@ -17,7 +17,7 @@ import {
 } from "./installer-helpers.js";
 import { goodbye } from "./utils.js";
 
-export const installReactive = async (name, template) => {
+const install = async (name, template, framework, frameColor) => {
   const targetDir = `${process.cwd()}/${name}`;
 
   const currentFileUrl = import.meta.url;
@@ -33,7 +33,7 @@ export const installReactive = async (name, template) => {
     templateDir: templateDir,
   };
 
-  const tasks = new Listr([
+  const tasksReactive = new Listr([
     {
       title: "Copy project files",
       task: () => copyTemplateFiles(options),
@@ -64,27 +64,7 @@ export const installReactive = async (name, template) => {
     },
   ]);
 
-  await tasks.run();
-  goodbye(options.name);
-};
-
-export const installDjango = async (name) => {
-  const targetDir = `${process.cwd()}/${name}`;
-
-  const currentFileUrl = import.meta.url;
-  const templateDir = path.resolve(
-    new URL(currentFileUrl).pathname,
-    "../../templates",
-    "django"
-  );
-
-  const options = {
-    name: name,
-    targetDir: targetDir,
-    templateDir: templateDir,
-  };
-
-  const tasks = new Listr([
+  const tasksDjango = new Listr([
     {
       title: "Check if Python is installed",
       task: () => checkPython(options),
@@ -131,6 +111,10 @@ export const installDjango = async (name) => {
     },
   ]);
 
+  const tasks = template === "django" ? tasksDjango : tasksReactive;
+
   await tasks.run();
-  goodbye(options.name);
+  goodbye(framework, frameColor, options.name);
 };
+
+export default install;

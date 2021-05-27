@@ -1,12 +1,12 @@
 import chalk from "chalk";
-import figlet from "figlet";
 import fs from "fs";
 import inquirer from "inquirer";
 import shell from "shelljs";
 import stripAnsi from "strip-ansi";
 import menu from "../cli.js";
-import { installDjango, installReactive } from "./installers.js";
+import install from "./installer.js";
 import { projectNameMenu } from "./menu-helpers.js";
+import { goodbye } from "./utils.js";
 
 const installMenu = (framework) => {
   // Colors that identify each framework
@@ -35,8 +35,8 @@ const installMenu = (framework) => {
       },
     ])
     .then((name) => {
-      shell.echo();
       const path = `${shell.pwd().stdout}/${name.project}`;
+      shell.echo();
       if (name.project === "") {
         shell.echo(error("The name of the app cannot be empty!"));
         installMenu(framework);
@@ -65,15 +65,15 @@ const installMenu = (framework) => {
             shell.echo();
             if (choice === "Go ahead!") {
               if (framework === "React") {
-                installReactive(name.project, "react");
+                install(name.project, "react", framework, frameColor);
               } else if (framework === "Vite-React") {
-                installReactive(name.project, "vite-react");
+                install(name.project, "vite-react", framework, frameColor);
               } else if (framework === "Vite-Vue") {
-                installReactive(name.project, "vite-vue");
+                install(name.project, "vite-vue", framework, frameColor);
               } else if (framework === "Next.js") {
-                installReactive(name.project, "nextjs");
+                install(name.project, "nextjs", framework, frameColor);
               } else if (framework === "Django") {
-                installDjango(name.project);
+                install(name.project, "django", framework, frameColor);
               } else {
                 shell.echo(chalk.redBright("Invalid option!"));
                 return;
@@ -83,8 +83,7 @@ const installMenu = (framework) => {
             } else if (choice === "Please start over") {
               menu();
             } else {
-              shell.echo(chalk.yellowBright.bold(figlet.textSync("Bye!")));
-              shell.echo();
+              goodbye();
             }
           });
       }
