@@ -4,87 +4,64 @@ import shell from "shelljs";
 
 const { which } = shell;
 
-export const copyTemplateFiles = async (options) => {
-  return await fse.copy(options.templateDir, options.targetDir);
+export const copyTemplateFiles = async ({ templateDir, targetDir }) => {
+  return await fse.copy(templateDir, targetDir);
 };
 
-export const renameGitignore = async (options) => {
-  return await fse.rename(
-    `${options.targetDir}/gitignore`,
-    `${options.targetDir}/.gitignore`
-  );
+export const renameGitignore = async ({ targetDir }) => {
+  return await fse.rename(`${targetDir}/gitignore`, `${targetDir}/.gitignore`);
 };
 
-export const installDeps = async (options) => {
+export const installDeps = async ({ targetDir }) => {
   return await execa("yarn", {
-    cwd: options.targetDir,
+    cwd: targetDir,
   });
 };
 
-export const gitInit = async (options) => {
+export const gitInit = async ({ targetDir }) => {
   return await execa("git", ["init"], {
-    cwd: options.targetDir,
+    cwd: targetDir,
   });
 };
 
-export const gitAdd = async (options) => {
+export const gitAdd = async ({ targetDir }) => {
   return await execa("git", ["add", "."], {
-    cwd: options.targetDir,
+    cwd: targetDir,
   });
 };
 
-export const gitCommit = async (options) => {
+export const gitCommit = async ({ targetDir }) => {
   return await execa("git", ["commit", "-m", "initial commit by Frames"], {
-    cwd: options.targetDir,
+    cwd: targetDir,
   });
 };
 
-export const installPythonDeps = async (options) => {
+export const installPythonDeps = async ({ targetDir }) => {
   return await execa("pipenv", ["install"], {
-    cwd: options.targetDir,
+    cwd: targetDir,
   });
 };
 
-export const installPythonDevDeps = async (options) => {
+export const installPythonDevDeps = async ({ targetDir }) => {
   return await execa("pipenv", ["install", "--dev"], {
-    cwd: options.targetDir,
+    cwd: targetDir,
   });
 };
 
-export const renameDjangoApp = async (options) => {
+export const renameDjangoApp = async ({ name, targetDir }) => {
   return await execa(
     "pipenv",
-    ["run", "python", "manage.py", "rename", "boilerplate", options.name],
+    ["run", "python", "manage.py", "rename", "boilerplate", name],
     {
-      cwd: options.targetDir,
+      cwd: targetDir,
     }
   );
 };
 
-export const openVSC = async (options) => {
+export const openVSC = async ({ targetDir }) => {
   if (which("code")) {
     return await execa("code", ["."], {
-      cwd: options.targetDir,
+      cwd: targetDir,
     });
-  }
-};
-
-export const installPipenv = async (options) => {
-  if (!which("brew")) {
-    await execa(
-      "/bin/bash",
-      [
-        "-c",
-        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)",
-      ],
-      {
-        cwd: options.targetDir,
-      }
-    );
-    if (!which("pipenv")) {
-      return await execa("brew", ["install", "pipenv"], {
-        cwd: options.targetDir,
-      });
-    }
   }
 };
