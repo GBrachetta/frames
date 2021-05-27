@@ -12,6 +12,7 @@ import {
   renameDjangoApp,
   openVSC,
   installPipenv,
+  renameGitignore,
 } from "./installer-helpers.js";
 import { goodbye } from "./utils.js";
 
@@ -35,6 +36,10 @@ export const installReactive = async (name, template) => {
     {
       title: "Copy project files",
       task: () => copyTemplateFiles(options),
+    },
+    {
+      title: "Generate gitignore",
+      task: () => renameGitignore(options),
     },
     {
       title: "Install dependencies",
@@ -83,38 +88,42 @@ export const installDjango = async (name) => {
       title: "Copy project files",
       task: () => copyTemplateFiles(options),
     },
-    // {
-    //   title: "Check if Pipenv exists",
-    //   task: () => installPipenv(options),
-    // },
-    // {
-    //   title: "Install dependencies",
-    //   task: () => installPythonDeps(options),
-    // },
-    // {
-    //   title: "Install dev dependencies",
-    //   task: () => installPythonDevDeps(options),
-    // },
-    // {
-    //   title: `Rename app to ${chalk.cyanBright(options.name)}`,
-    //   task: () => renameDjangoApp(options),
-    // },
-    // {
-    //   title: "Initialize git repository",
-    //   task: () => gitInit(options),
-    // },
-    // {
-    //   title: "Stage files to commit area",
-    //   task: () => gitAdd(options),
-    // },
-    // {
-    //   title: "Commit files",
-    //   task: () => gitCommit(options),
-    // },
-    // {
-    //   title: "Start editor",
-    //   task: () => openVSC(options),
-    // },
+    {
+      title: "Generate gitignore",
+      task: () => renameGitignore(options),
+    },
+    {
+      title: "Check if Pipenv exists",
+      task: () => installPipenv(options),
+    },
+    {
+      title: "Install dependencies",
+      task: () => installPythonDeps(options),
+    },
+    {
+      title: "Install dev dependencies",
+      task: () => installPythonDevDeps(options),
+    },
+    {
+      title: `Rename app to ${chalk.cyanBright(options.name)}`,
+      task: () => renameDjangoApp(options),
+    },
+    {
+      title: "Initialize git repository",
+      task: () => gitInit(options),
+    },
+    {
+      title: "Stage files to commit area",
+      task: () => gitAdd(options),
+    },
+    {
+      title: "Commit files",
+      task: () => gitCommit(options),
+    },
+    {
+      title: "Start editor",
+      task: () => openVSC(options),
+    },
   ]);
 
   await tasks.run();

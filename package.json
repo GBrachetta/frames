@@ -1,6 +1,6 @@
 {
   "name": "@gbrachetta/frames",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "type": "module",
   "description": "A tool to scaffold boilerplates",
   "main": "cli.js",
@@ -30,9 +30,9 @@
     "chalk": "^4.1.1",
     "execa": "^5.0.0",
     "figlet": "^1.5.0",
+    "fs-extra": "^10.0.0",
     "inquirer": "^8.0.0",
     "listr": "^0.14.3",
-    "ncp": "^2.0.0",
     "press-any-key": "^0.1.1",
     "shelljs": "^0.8.4",
     "shelljs-plugin-clear": "^0.2.0",
