@@ -4,7 +4,8 @@ import inquirer from "inquirer";
 import shell from "shelljs";
 import { colors } from "./utils.js";
 
-const { accent, title, keyword, menuLine, spacer, bold } = colors;
+const { accent, title, keyword, menuLine, spacer, bold, helpMenu, exit } =
+  colors;
 
 const menuSeparator = new inquirer.Separator(
   spacer("————————————————————————————")
@@ -25,7 +26,7 @@ export const projectNameMenu = [
   chalk.keyword(keyword).bold("Go ahead!"),
   chalk.keyword(keyword).bold("I regret that lame name!"),
   chalk.keyword(keyword).bold("Please start over"),
-  chalk.keyword("tomato").bold("Take me outta here!"),
+  exit("Take me outta here!"),
   menuSeparator,
 ];
 
@@ -37,7 +38,7 @@ export const framesMenu = [
   chalk.keyword(keyword).bold("Next.js"),
   chalk.keyword(keyword).bold("Django"),
   menuSeparator,
-  chalk.keyword("springgreen").bold("Help"),
-  chalk.keyword("tomato").bold("Exit"),
+  helpMenu("Help"),
+  exit("Exit"),
   menuSeparator,
 ];

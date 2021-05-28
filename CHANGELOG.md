@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use `gradient-string` for the titles
 - Bump versions of reactive dependencies
 - Extract all color variables to centralized object
+- Validate for correct project name
 
 ## [3.1.0] - 2021-05-27
 
