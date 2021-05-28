@@ -4,8 +4,7 @@ import inquirer from "inquirer";
 import shell from "shelljs";
 import { colors } from "./utils.js";
 
-const { accent, title, keyword, menuLine, spacer, bold, helpMenu, exit } =
-  colors;
+const { accent, title, keyword, menuLine, spacer, helpMenu, exit } = colors;
 
 const menuSeparator = new inquirer.Separator(
   spacer("————————————————————————————")
@@ -13,12 +12,12 @@ const menuSeparator = new inquirer.Separator(
 
 export const mainMenu = async () => {
   shell.clear();
-  shell.echo(menuLine("\n  ——————————————————————————————————————"));
-  shell.echo(title(figlet.textSync("  Frames ")));
-  shell.echo(menuLine("  ——————————————————————————————————————\n"));
-  shell.echo(bold(`            ${title("WELCOME TO FRAMES!")}         `));
-  shell.echo(accent.italic("\n          The Scaffolding package\n"));
-  shell.echo(menuLine("  ——————————————————————————————————————\n"));
+  console.log(menuLine("\n  ——————————————————————————————————————"));
+  console.log(title(figlet.textSync("  Frames ")));
+  console.log(menuLine("  ——————————————————————————————————————\n"));
+  console.log(`            ${title("WELCOME TO FRAMES!")}         `);
+  console.log(accent.italic("\n          The Scaffolding package\n"));
+  console.log(menuLine("  ——————————————————————————————————————\n"));
 };
 
 export const projectNameMenu = [

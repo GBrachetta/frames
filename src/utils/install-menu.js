@@ -8,10 +8,10 @@ import { projectNameMenu } from "./menu-helpers.js";
 import { colors, goodbye } from "./utils.js";
 
 const installMenu = (framework) => {
-  const { errorColor, accent, frame } = colors;
+  const { errorColor, accent, frame, helpMenu } = colors;
   const frameColor = frame[framework];
-  const validDir = /^[a-zA-Z0-9]+$/;
-  shell.echo();
+  const validDir = /^[a-zA-Z][a-zA-Z0-9-_]*$/;
+  console.log();
   inquirer
     .prompt([
       {
@@ -24,15 +24,22 @@ const installMenu = (framework) => {
     ])
     .then((name) => {
       const path = `${shell.pwd().stdout}/${name.project}`;
-      shell.echo();
+      console.log();
       if (name.project === "") {
-        shell.echo(" ", errorColor("The name of the app cannot be empty!"));
+        console.log(" ", errorColor("The name of the app cannot be empty!"));
         installMenu(framework);
       } else if (fs.existsSync(path)) {
-        shell.echo(" ", errorColor("The directory already exists!"));
+        console.log(" ", errorColor("The directory already exists!"));
         installMenu(framework);
       } else if (!validDir.test(name.project)) {
-        shell.echo(" ", errorColor("Project name is invalid!"));
+        console.log(
+          " ",
+          errorColor("Project name is invalid!\n"),
+          "\n ",
+          helpMenu(
+            "(Letters, numbers, hyphens and underscores. Must start with a letter)."
+          )
+        );
         installMenu(framework);
       } else {
         inquirer
@@ -51,7 +58,7 @@ const installMenu = (framework) => {
           ])
           .then((answers) => {
             let choice = stripAnsi(answers.project);
-            shell.echo();
+            console.log();
             if (choice === "Go ahead!") {
               if (framework === "React") {
                 install(name.project, "react", framework, frameColor);
@@ -64,7 +71,7 @@ const installMenu = (framework) => {
               } else if (framework === "Django") {
                 install(name.project, "django", framework, frameColor);
               } else {
-                shell.echo(errorColor("Invalid option!"));
+                console.log(errorColor("Invalid option!"));
                 return;
               }
             } else if (choice === "I regret that lame name!") {
