@@ -19,6 +19,7 @@ import { goodbye } from "./utils.js";
 
 const install = async (name, template, framework, frameColor) => {
   const targetDir = `${process.cwd()}/${name}`;
+  const title = chalk.keyword("aquamarine").bold;
 
   const currentFileUrl = import.meta.url;
   const templateDir = path.resolve(
@@ -35,78 +36,78 @@ const install = async (name, template, framework, frameColor) => {
 
   const tasksReactive = new Listr([
     {
-      title: "Copy project files",
+      title: title("Copy project files"),
       task: () => copyTemplateFiles(options),
     },
     {
-      title: "Generate gitignore",
+      title: title("Generate gitignore"),
       task: () => renameGitignore(options),
     },
     {
-      title: "Install dependencies",
+      title: title("Install dependencies"),
       task: () => installDeps(options),
     },
     {
-      title: "Initialize git repository",
+      title: title("Initialize git repository"),
       task: () => gitInit(options),
     },
     {
-      title: "Stage files to commit area",
+      title: title("Stage files to commit area"),
       task: () => gitAdd(options),
     },
     {
-      title: "Commit files",
+      title: title("Commit files"),
       task: () => gitCommit(options),
     },
     {
-      title: "Start editor",
+      title: title("Start editor"),
       task: () => openVSC(options),
     },
   ]);
 
   const tasksDjango = new Listr([
     {
-      title: "Check if Python is installed",
+      title: title("Check if Python is installed"),
       task: () => checkPython(options),
     },
     {
-      title: "Check if Pipenv is installed",
+      title: title("Check if Pipenv is installed"),
       task: () => installPipenv(options),
     },
     {
-      title: "Copy project files",
+      title: title("Copy project files"),
       task: () => copyTemplateFiles(options),
     },
     {
-      title: "Generate gitignore",
+      title: title("Generate gitignore"),
       task: () => renameGitignore(options),
     },
     {
-      title: "Install dependencies",
+      title: title("Install dependencies"),
       task: () => installPythonDeps(options),
     },
     {
-      title: "Install dev dependencies",
+      title: title("Install dev dependencies"),
       task: () => installPythonDevDeps(options),
     },
     {
-      title: `Rename app to ${chalk.cyanBright(options.name)}`,
+      title: title(`Rename app to ${frameColor(` ${name} `)}`),
       task: () => renameDjangoApp(options),
     },
     {
-      title: "Initialize git repository",
+      title: title("Initialize git repository"),
       task: () => gitInit(options),
     },
     {
-      title: "Stage files to commit area",
+      title: title("Stage files to commit area"),
       task: () => gitAdd(options),
     },
     {
-      title: "Commit files",
+      title: title("Commit files"),
       task: () => gitCommit(options),
     },
     {
-      title: "Start editor",
+      title: title("Start editor"),
       task: () => openVSC(options),
     },
   ]);

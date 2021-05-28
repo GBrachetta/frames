@@ -7,14 +7,15 @@ import { framesMenu, mainMenu } from "./utils/menu-helpers.js";
 import { goodbye, helpMe } from "./utils/utils.js";
 
 const menu = async () => {
-  await mainMenu();
+  const accent = chalk.keyword("lightblue");
+  await mainMenu(accent);
 
   inquirer
     .prompt([
       {
         type: "list",
         name: "frame",
-        message: chalk.blueBright("Please select your framework"),
+        message: accent("Please select your framework"),
         loop: false,
         pageSize: 10,
         choices: framesMenu,
@@ -26,7 +27,7 @@ const menu = async () => {
         ? goodbye()
         : choice === "Help"
         ? helpMe()
-        : installMenu(choice);
+        : installMenu(choice, accent);
     });
 };
 

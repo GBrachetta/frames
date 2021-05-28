@@ -8,18 +8,18 @@ import install from "./installer.js";
 import { projectNameMenu } from "./menu-helpers.js";
 import { goodbye } from "./utils.js";
 
-const installMenu = (framework) => {
+const installMenu = (framework, accent) => {
   // Colors that identify each framework
   const colors = {
-    React: chalk.bgCyanBright.gray.bold,
-    "Vite-React": chalk.bgYellowBright.gray.bold,
-    "Vite-Vue": chalk.bgRed.whiteBright.bold,
-    "Next.js": chalk.bgGreenBright.gray.bold,
-    Django: chalk.bgMagentaBright.blackBright.bold,
+    React: chalk.keyword("cyan").bold,
+    "Vite-React": chalk.keyword("gold").bold,
+    "Vite-Vue": chalk.keyword("hotpink").bold,
+    "Next.js": chalk.keyword("springgreen").bold,
+    Django: chalk.keyword("yellowgreen").bold,
   };
 
   const frameColor = colors[framework];
-  const error = chalk.redBright.bold;
+  const errorColor = chalk.keyword("tomato").bold.underline;
 
   shell.echo();
   inquirer
@@ -27,10 +27,8 @@ const installMenu = (framework) => {
       {
         type: "input",
         name: "project",
-        message: chalk.blueBright(
-          `Please choose the name of your ${frameColor(
-            ` ${framework} `
-          )} project`
+        message: accent(
+          `Please choose the name of your ${frameColor(framework)} project`
         ),
       },
     ])
@@ -38,11 +36,11 @@ const installMenu = (framework) => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       shell.echo();
       if (name.project === "") {
-        shell.echo(error("The name of the app cannot be empty!"));
-        installMenu(framework);
+        shell.echo(errorColor("The name of the app cannot be empty!"));
+        installMenu(framework, accent);
       } else if (fs.existsSync(path)) {
-        shell.echo(error("The directory already exists!"));
-        installMenu(framework);
+        shell.echo(errorColor("The directory already exists!"));
+        installMenu(framework, accent);
       } else {
         inquirer
           .prompt([
@@ -50,13 +48,11 @@ const installMenu = (framework) => {
               type: "list",
               name: "project",
               loop: false,
-              message: `Your ${frameColor(
-                ` ${framework} `
-              )} app will be named ${frameColor(
-                ` ${name.project} `
-              )} and it will be created in ${frameColor(
-                ` ${path} `
-              )}. Continue?`,
+              message: accent(
+                `Your ${frameColor(framework)} app will be named ${frameColor(
+                  name.project
+                )} and it will be created in ${frameColor(path)}. Continue?`
+              ),
               choices: projectNameMenu,
             },
           ])
@@ -79,7 +75,7 @@ const installMenu = (framework) => {
                 return;
               }
             } else if (choice === "I regret that lame name!") {
-              installMenu(framework);
+              installMenu(framework, accent);
             } else if (choice === "Please start over") {
               menu();
             } else {

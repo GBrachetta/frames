@@ -1,45 +1,43 @@
 import chalk from "chalk";
 import figlet from "figlet";
+import gradient from "gradient-string";
 import inquirer from "inquirer";
 import shell from "shelljs";
 
+const keyword = "aquamarine";
 const menuSeparator = new inquirer.Separator(
   chalk.blueBright("————————————————————————————")
 );
 
-export const framesMenu = [
-  menuSeparator,
-  chalk.cyanBright.bold("React"),
-  chalk.cyanBright.bold("Vite-React"),
-  chalk.cyanBright.bold("Vite-Vue"),
-  chalk.cyanBright.bold("Next.js"),
-  chalk.cyanBright.bold("Django"),
-  menuSeparator,
-  chalk.greenBright.bold("Help"),
-  chalk.redBright.bold("Exit"),
-  menuSeparator,
-];
+export const mainMenu = async (accent) => {
+  const title = gradient("yellow", "tomato", "cyan");
+  shell.clear();
+  shell.echo(chalk.redBright("\n  ——————————————————————————————————————"));
+  shell.echo(title(figlet.textSync("  Frames ")));
+  shell.echo(chalk.redBright("  ——————————————————————————————————————\n"));
+  shell.echo(chalk.bold(`            ${title("WELCOME TO FRAMES!")}         `));
+  shell.echo(accent.italic.bold("\n          The Scaffolding package\n"));
+  shell.echo(chalk.redBright("  ——————————————————————————————————————\n"));
+};
 
 export const projectNameMenu = [
   menuSeparator,
-  chalk.cyanBright.bold("Go ahead!"),
-  chalk.cyanBright.bold("I regret that lame name!"),
-  chalk.cyanBright.bold("Please start over"),
-  chalk.redBright.bold("Take me outta here!"),
+  chalk.keyword(keyword).bold("Go ahead!"),
+  chalk.keyword(keyword).bold("I regret that lame name!"),
+  chalk.keyword(keyword).bold("Please start over"),
+  chalk.keyword("tomato").bold("Take me outta here!"),
   menuSeparator,
 ];
 
-export const mainMenu = async () => {
-  shell.clear();
-  shell.echo();
-  shell.echo(chalk.redBright("  ——————————————————————————————————————"));
-  shell.echo(chalk.yellow.bold(figlet.textSync("  Frames ")));
-  shell.echo(chalk.redBright("  ——————————————————————————————————————"));
-  shell.echo();
-  shell.echo(chalk.cyanBright.bold("            WELCOME TO FRAMES!          "));
-  shell.echo();
-  shell.echo(chalk.blueBright.italic.bold("          The Scaffolding package"));
-  shell.echo();
-  shell.echo(chalk.redBright("  ——————————————————————————————————————"));
-  shell.echo();
-};
+export const framesMenu = [
+  menuSeparator,
+  chalk.keyword(keyword).bold("React"),
+  chalk.keyword(keyword).bold("Vite-React"),
+  chalk.keyword(keyword).bold("Vite-Vue"),
+  chalk.keyword(keyword).bold("Next.js"),
+  chalk.keyword(keyword).bold("Django"),
+  menuSeparator,
+  chalk.keyword("springgreen").bold("Help"),
+  chalk.keyword("tomato").bold("Exit"),
+  menuSeparator,
+];
