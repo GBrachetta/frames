@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "**/templates/**/*.json": "json",
+    "**/templates/**/*.py": "python",
+    "**/templates/**/Pipfile": "pip-requirements",
+    "**/templates/**/*.md": "markdown",
+    "**/templates/**/.gitignore": "gitignore",
+    "**/templates/**/*.js": "javascript",
+    "**/templates/**/*.css": "css",
+    "**/templates/**/*.jsx": "javascriptreact",
+    "**/templates/**/*.html": "html",
+    "**/templates/**/*.vue": "vue",
+  }
+}
