@@ -9,7 +9,7 @@ import { projectNameMenu } from "./menu-helpers.js";
 import { goodbye } from "./utils.js";
 
 const installMenu = (framework, accent) => {
-  // Colors that identify each framework
+  // Color variables
   const colors = {
     React: chalk.keyword("cyan").bold,
     "Vite-React": chalk.keyword("gold").bold,
@@ -69,9 +69,15 @@ const installMenu = (framework, accent) => {
               } else if (framework === "Next.js") {
                 install(name.project, "nextjs", framework, frameColor);
               } else if (framework === "Django") {
-                install(name.project, "django", framework, frameColor);
+                install(
+                  name.project,
+                  "django",
+                  framework,
+                  frameColor,
+                  errorColor
+                );
               } else {
-                shell.echo(chalk.redBright("Invalid option!"));
+                shell.echo(errorColor("Invalid option!"));
                 return;
               }
             } else if (choice === "I regret that lame name!") {

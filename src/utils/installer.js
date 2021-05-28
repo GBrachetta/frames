@@ -17,7 +17,7 @@ import {
 } from "./installer-helpers.js";
 import { goodbye } from "./utils.js";
 
-const install = async (name, template, framework, frameColor) => {
+const install = async (name, template, framework, frameColor, errorColor) => {
   const targetDir = `${process.cwd()}/${name}`;
   const title = chalk.keyword("aquamarine").bold;
 
@@ -32,6 +32,7 @@ const install = async (name, template, framework, frameColor) => {
     name: name,
     targetDir: targetDir,
     templateDir: templateDir,
+    errorColor: errorColor,
   };
 
   const tasksReactive = new Listr([

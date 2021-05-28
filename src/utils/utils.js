@@ -55,28 +55,16 @@ export const goodbye = (framework, framecolor, name) => {
   shell.echo();
 };
 
-export const noPython = () => {
-  shell.echo(
-    chalk
-      .keyword("tomato")
-      .bold.underline("\nMust have Python > 3.6 installed to run Django!\n")
-  );
+export const noPython = (errorColor) => {
+  shell.echo(errorColor("\nMust have Python > 3.6 installed to run Django!\n"));
   process.exit(1);
 };
 
-export const failedPipenv = (error) => {
-  shell.echo(
-    chalk
-      .keyword("tomato")
-      .bold.underline("Failed to install Pipenv, please install!")
-  );
+export const failedPipenv = (error, errorColor) => {
+  shell.echo(errorColor("Failed to install Pipenv, please install!"));
   shell.echo(
     chalk.greenBright.bold("\nVisit: https://pypi.org/project/pipenv/")
   );
-  shell.echo(
-    chalk.keyword("tomato").bold.underline("\nMessage:"),
-    chalk.cyanBright(error.message),
-    "\n"
-  );
+  shell.echo(errorColor("\nMessage:"), chalk.cyanBright(error.message), "\n");
   process.exit(1);
 };
