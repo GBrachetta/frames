@@ -77,6 +77,12 @@ export const renameDjangoApp = async ({ name, targetDir }) => {
   );
 };
 
+export const migrateDjango = async ({ targetDir }) => {
+  return await execa("pipenv", ["run", "python", "manage.py", "migrate"], {
+    cwd: targetDir,
+  });
+};
+
 export const openVSC = async ({ targetDir }) => {
   if (which("code")) {
     return await execa("code", ["."], {

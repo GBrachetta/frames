@@ -70,22 +70,34 @@ export const helpMe = () => {
 
 export const goodbye = (framework, framecolor, name) => {
   if (!name) {
-    console.log();
-    console.log(title(figlet.textSync("  Bye!")));
-    console.log();
+    console.log("\n", title(figlet.textSync("  Bye!")), "\n");
     return;
   }
   const path = framecolor(`${process.cwd()}/${name}`);
   const project = `${framecolor(framework)} project`;
-  console.log(helpMenu("\nAll done!\n"));
+  console.log(helpMenu("\n  All done!\n"));
   console.log(
     accent(
-      `Your ${project} is ready at ${path}. Now go and create a great app!`
+      `  Your ${project} is ready at ${path}.\n  Now go and create a great app!\n`
     )
   );
-  console.log();
-  console.log(title(figlet.textSync("  Bye!")));
-  console.log();
+  framework === "Django"
+    ? console.log(
+        accent(
+          `  Activate your virtual environment with ${framecolor(
+            "pipenv shell"
+          )} and run server with ${framecolor("python manage.py runserver\n")}`
+        )
+      )
+    : framework === "React"
+    ? console.log(
+        accent(`  Start development server with ${framecolor("yarn start\n")}`)
+      )
+    : console.log(
+        accent(`  Start development server with ${framecolor("yarn dev\n")}`)
+      );
+
+  console.log(title(figlet.textSync("  Bye!")), "\n");
 };
 
 export const noPython = () => {

@@ -24,16 +24,15 @@ const installMenu = (framework) => {
     ])
     .then((name) => {
       const path = `${shell.pwd().stdout}/${name.project}`;
-      console.log();
       if (name.project === "") {
-        console.log(" ", errorColor("The name of the app cannot be empty!"));
+        console.log("\n ", errorColor("The name of the app cannot be empty!"));
         installMenu(framework);
       } else if (fs.existsSync(path)) {
-        console.log(" ", errorColor("The directory already exists!"));
+        console.log("\n ", errorColor("The directory already exists!"));
         installMenu(framework);
       } else if (!validDir.test(name.project)) {
         console.log(
-          " ",
+          "\n ",
           errorColor("Project name is invalid!\n"),
           "\n ",
           helpMenu(

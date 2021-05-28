@@ -10,6 +10,7 @@ import {
   installPipenv,
   installPythonDeps,
   installPythonDevDeps,
+  migrateDjango,
   openVSC,
   renameDjangoApp,
   renameGitignore,
@@ -91,8 +92,12 @@ const install = async (name, template, framework, frameColor) => {
       task: () => installPythonDevDeps(options),
     },
     {
-      title: step(`Rename app to ${frameColor(` ${name} `)}`),
+      title: step(`Rename app to ${frameColor(name)}`),
       task: () => renameDjangoApp(options),
+    },
+    {
+      title: step("Run initial migrations"),
+      task: () => migrateDjango(options),
     },
     {
       title: step("Initialize git repository"),
