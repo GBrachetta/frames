@@ -1,13 +1,12 @@
-import chalk from "chalk";
 import inquirer from "inquirer";
 import "shelljs-plugin-clear";
 import stripAnsi from "strip-ansi";
 import installMenu from "./utils/install-menu.js";
 import { framesMenu, mainMenu } from "./utils/menu-helpers.js";
-import { goodbye, helpMe } from "./utils/utils.js";
+import { colors, goodbye, helpMe } from "./utils/utils.js";
 
 const menu = async () => {
-  const accent = chalk.keyword("lightblue");
+  const { accent } = colors;
   await mainMenu(accent);
 
   inquirer
@@ -27,7 +26,7 @@ const menu = async () => {
         ? goodbye()
         : choice === "Help"
         ? helpMe()
-        : installMenu(choice, accent);
+        : installMenu(choice);
     });
 };
 

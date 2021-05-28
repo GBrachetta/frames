@@ -1,23 +1,23 @@
 import chalk from "chalk";
 import figlet from "figlet";
-import gradient from "gradient-string";
 import inquirer from "inquirer";
 import shell from "shelljs";
+import { colors } from "./utils.js";
 
-const keyword = "aquamarine";
+const { accent, title, keyword, menuLine, spacer, bold } = colors;
+
 const menuSeparator = new inquirer.Separator(
-  chalk.blueBright("————————————————————————————")
+  spacer("————————————————————————————")
 );
 
-export const mainMenu = async (accent) => {
-  const title = gradient("yellow", "tomato", "cyan");
+export const mainMenu = async () => {
   shell.clear();
-  shell.echo(chalk.redBright("\n  ——————————————————————————————————————"));
+  shell.echo(menuLine("\n  ——————————————————————————————————————"));
   shell.echo(title(figlet.textSync("  Frames ")));
-  shell.echo(chalk.redBright("  ——————————————————————————————————————\n"));
-  shell.echo(chalk.bold(`            ${title("WELCOME TO FRAMES!")}         `));
-  shell.echo(accent.italic.bold("\n          The Scaffolding package\n"));
-  shell.echo(chalk.redBright("  ——————————————————————————————————————\n"));
+  shell.echo(menuLine("  ——————————————————————————————————————\n"));
+  shell.echo(bold(`            ${title("WELCOME TO FRAMES!")}         `));
+  shell.echo(accent.italic("\n          The Scaffolding package\n"));
+  shell.echo(menuLine("  ——————————————————————————————————————\n"));
 };
 
 export const projectNameMenu = [

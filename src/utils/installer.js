@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import Listr from "listr";
 import path from "path";
 import {
@@ -15,11 +14,11 @@ import {
   renameDjangoApp,
   renameGitignore,
 } from "./installer-helpers.js";
-import { goodbye } from "./utils.js";
+import { colors, goodbye } from "./utils.js";
 
-const install = async (name, template, framework, frameColor, errorColor) => {
+const install = async (name, template, framework, frameColor) => {
+  const { errorColor, step } = colors;
   const targetDir = `${process.cwd()}/${name}`;
-  const title = chalk.keyword("aquamarine").bold;
 
   const currentFileUrl = import.meta.url;
   const templateDir = path.resolve(
@@ -37,78 +36,78 @@ const install = async (name, template, framework, frameColor, errorColor) => {
 
   const tasksReactive = new Listr([
     {
-      title: title("Copy project files"),
+      title: step("Copy project files"),
       task: () => copyTemplateFiles(options),
     },
     {
-      title: title("Generate gitignore"),
+      title: step("Generate gitignore"),
       task: () => renameGitignore(options),
     },
     {
-      title: title("Install dependencies"),
+      title: step("Install dependencies"),
       task: () => installDeps(options),
     },
     {
-      title: title("Initialize git repository"),
+      title: step("Initialize git repository"),
       task: () => gitInit(options),
     },
     {
-      title: title("Stage files to commit area"),
+      title: step("Stage files to commit area"),
       task: () => gitAdd(options),
     },
     {
-      title: title("Commit files"),
+      title: step("Commit files"),
       task: () => gitCommit(options),
     },
     {
-      title: title("Start editor"),
+      title: step("Start editor"),
       task: () => openVSC(options),
     },
   ]);
 
   const tasksDjango = new Listr([
     {
-      title: title("Check if Python is installed"),
+      title: step("Check if Python is installed"),
       task: () => checkPython(options),
     },
     {
-      title: title("Check if Pipenv is installed"),
+      title: step("Check if Pipenv is installed"),
       task: () => installPipenv(options),
     },
     {
-      title: title("Copy project files"),
+      title: step("Copy project files"),
       task: () => copyTemplateFiles(options),
     },
     {
-      title: title("Generate gitignore"),
+      title: step("Generate gitignore"),
       task: () => renameGitignore(options),
     },
     {
-      title: title("Install dependencies"),
+      title: step("Install dependencies"),
       task: () => installPythonDeps(options),
     },
     {
-      title: title("Install dev dependencies"),
+      title: step("Install dev dependencies"),
       task: () => installPythonDevDeps(options),
     },
     {
-      title: title(`Rename app to ${frameColor(` ${name} `)}`),
+      title: step(`Rename app to ${frameColor(` ${name} `)}`),
       task: () => renameDjangoApp(options),
     },
     {
-      title: title("Initialize git repository"),
+      title: step("Initialize git repository"),
       task: () => gitInit(options),
     },
     {
-      title: title("Stage files to commit area"),
+      title: step("Stage files to commit area"),
       task: () => gitAdd(options),
     },
     {
-      title: title("Commit files"),
+      title: step("Commit files"),
       task: () => gitCommit(options),
     },
     {
-      title: title("Start editor"),
+      title: step("Start editor"),
       task: () => openVSC(options),
     },
   ]);

@@ -37,20 +37,20 @@ export const gitCommit = async ({ targetDir }) => {
   });
 };
 
-export const checkPython = async ({ errorColor }) => {
+export const checkPython = async () => {
   if (!which("pip3")) {
-    noPython(errorColor);
+    noPython();
   }
 };
 
-export const installPipenv = async ({ targetDir, errorColor }) => {
+export const installPipenv = async ({ targetDir }) => {
   if (!which("pipenv")) {
     try {
       return await execa("pip3", ["install", "--user", "pipenv"], {
         cwd: targetDir,
       });
     } catch (error) {
-      failedPipenv(error, errorColor);
+      failedPipenv(error);
     }
   }
 };

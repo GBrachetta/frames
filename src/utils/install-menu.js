@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import fs from "fs";
 import inquirer from "inquirer";
 import shell from "shelljs";
@@ -6,21 +5,12 @@ import stripAnsi from "strip-ansi";
 import menu from "../cli.js";
 import install from "./installer.js";
 import { projectNameMenu } from "./menu-helpers.js";
-import { goodbye } from "./utils.js";
+import { colors, goodbye } from "./utils.js";
 
-const installMenu = (framework, accent) => {
-  // Color variables
-  const colors = {
-    React: chalk.keyword("cyan").bold,
-    "Vite-React": chalk.keyword("gold").bold,
-    "Vite-Vue": chalk.keyword("hotpink").bold,
-    "Next.js": chalk.keyword("springgreen").bold,
-    Django: chalk.keyword("yellowgreen").bold,
-  };
-
-  const frameColor = colors[framework];
-  const errorColor = chalk.keyword("tomato").bold.underline;
-
+const installMenu = (framework) => {
+  const { errorColor, accent, frame } = colors;
+  const frameColor = frame[framework];
+  const validDir = /^[a-zA-Z0-9]+$/;
   shell.echo();
   inquirer
     .prompt([
@@ -36,11 +26,14 @@ const installMenu = (framework, accent) => {
       const path = `${shell.pwd().stdout}/${name.project}`;
       shell.echo();
       if (name.project === "") {
-        shell.echo(errorColor("The name of the app cannot be empty!"));
-        installMenu(framework, accent);
+        shell.echo(" ", errorColor("The name of the app cannot be empty!"));
+        installMenu(framework);
       } else if (fs.existsSync(path)) {
-        shell.echo(errorColor("The directory already exists!"));
-        installMenu(framework, accent);
+        shell.echo(" ", errorColor("The directory already exists!"));
+        installMenu(framework);
+      } else if (!validDir.test(name.project)) {
+        shell.echo(" ", errorColor("Project name is invalid!"));
+        installMenu(framework);
       } else {
         inquirer
           .prompt([
@@ -69,19 +62,13 @@ const installMenu = (framework, accent) => {
               } else if (framework === "Next.js") {
                 install(name.project, "nextjs", framework, frameColor);
               } else if (framework === "Django") {
-                install(
-                  name.project,
-                  "django",
-                  framework,
-                  frameColor,
-                  errorColor
-                );
+                install(name.project, "django", framework, frameColor);
               } else {
                 shell.echo(errorColor("Invalid option!"));
                 return;
               }
             } else if (choice === "I regret that lame name!") {
-              installMenu(framework, accent);
+              installMenu(framework);
             } else if (choice === "Please start over") {
               menu();
             } else {
