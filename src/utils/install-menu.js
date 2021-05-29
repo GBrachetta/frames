@@ -10,7 +10,7 @@ import { colors, goodbye } from "./utils.js";
 const installMenu = (framework) => {
   const { errorColor, accent, frame, helpMenu } = colors;
   const frameColor = frame[framework];
-  const validDir = /^[a-zA-Z][a-zA-Z0-9-_]*$/;
+  const validDir = /^[a-zA-Z][a-zA-Z0-9_]*$/;
   console.log();
   inquirer
     .prompt([
@@ -36,7 +36,7 @@ const installMenu = (framework) => {
           errorColor("Project name is invalid!\n"),
           "\n ",
           helpMenu(
-            "(Letters, numbers, hyphens and underscores. Must start with a letter)."
+            "(Only letters, numbers and underscores. Must start with a letter)."
           )
         );
         installMenu(framework);

@@ -12,12 +12,12 @@ const menuSeparator = new inquirer.Separator(
 
 export const mainMenu = async () => {
   shell.clear();
-  console.log(menuLine("\n  ——————————————————————————————————————"));
-  console.log(title(figlet.textSync("  Frames ")));
-  console.log(menuLine("  ——————————————————————————————————————\n"));
-  console.log(`            ${title("WELCOME TO FRAMES!")}         `);
-  console.log(accent.italic("\n          The Scaffolding package\n"));
-  console.log(menuLine("  ——————————————————————————————————————\n"));
+  shell.echo(menuLine("\n  ——————————————————————————————————————"));
+  shell.echo(chalk.bold(title(figlet.textSync("  Frames "))));
+  shell.echo(menuLine("  ——————————————————————————————————————\n"));
+  shell.echo(chalk.bold(`            ${title("WELCOME TO FRAMES!")}         `));
+  shell.echo(accent.italic("\n          The Scaffolding package\n"));
+  shell.echo(menuLine("  ——————————————————————————————————————\n"));
 };
 
 export const projectNameMenu = [

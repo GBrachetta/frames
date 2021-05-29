@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] - 2021-05-29
+
+- Create superuser for Django project
+- Remove create superuser script once it's been used
+- Disallow use of hyphens in project name (not permitted by Django)
+- Generate readme files for all projects
+
 ## [3.3.0] - 2021-05-28
 
 - Run initial migrations for Django project

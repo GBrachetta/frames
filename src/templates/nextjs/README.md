@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Welcome to your **Next.js** project
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`Frames`](https://github.com/GBrachetta/frames).
 
 ## Getting Started
 

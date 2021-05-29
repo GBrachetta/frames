@@ -3,6 +3,7 @@ import path from "path";
 import {
   checkPython,
   copyTemplateFiles,
+  createSuperuser,
   gitAdd,
   gitCommit,
   gitInit,
@@ -12,6 +13,7 @@ import {
   installPythonDevDeps,
   migrateDjango,
   openVSC,
+  removeMakesuper,
   renameDjangoApp,
   renameGitignore,
 } from "./installer-helpers.js";
@@ -98,6 +100,14 @@ const install = async (name, template, framework, frameColor) => {
     {
       title: step("Run initial migrations"),
       task: () => migrateDjango(options),
+    },
+    {
+      title: step("Create superuser"),
+      task: () => createSuperuser(options),
+    },
+    {
+      title: step("Cleaning superuser script"),
+      task: () => removeMakesuper(options),
     },
     {
       title: step("Initialize git repository"),

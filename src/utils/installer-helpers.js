@@ -83,6 +83,16 @@ export const migrateDjango = async ({ targetDir }) => {
   });
 };
 
+export const createSuperuser = async ({ targetDir }) => {
+  return await execa("pipenv", ["run", "python", "manage.py", "makesuper"], {
+    cwd: targetDir,
+  });
+};
+
+export const removeMakesuper = async ({ targetDir }) => {
+  return await fse.remove(`${targetDir}/core/management/commands/makesuper.py`);
+};
+
 export const openVSC = async ({ targetDir }) => {
   if (which("code")) {
     return await execa("code", ["."], {

@@ -3,7 +3,7 @@
 
 ![image](https://res.cloudinary.com/gbrachetta/image/upload/v1607301400/oob_bfglzw.jpg)
 
-This app is a boilerplate with ready-to-go settings for a new Django app.
+This app is a starter with ready-to-go settings for a new Django app and it was bootstrapped by [Frames](https://github.com/GBrachetta/frames).
 
 It assumes using AWS to store static files, and the production variables have been added accordingly (but they only load in case there's a `USE_AWS=True` variable in the environment).
 
@@ -11,21 +11,24 @@ It also assumes deploying in Heroku to make use of their database, but that can 
 
 ## How to get started
 
-1. Download this repository to your computer and open it with your editor.
+1. You're mostly good to go! Just activate your virtual environment and start the development server!
 
-   The app contains a Pipfile, so a virtual shell will be automatically started if you have [pipenv](https://pipenv.pypa.io/en/latest/) installed, otherwise create your virtual environment with the manager of your preference.
+     ```bash
+     pipenv shell
+     python manage.py runserver
+     ```
 
-2. Install the requirements with `$ pipenv install` and `$ pipenv install --dev` if using Pipenv, otherwise with `$ pip install -r requirements.txt`.
+2. A superuser has been automatically created during the generation of this project:
 
-3. You can change the name of the project to one of your liking by running
+     - Username: `admin`
+     - Password: `admin`
+     - Email: `admin@domain.com`
 
-    `$ python manage.py rename <current-project-name> <new-project-name>`
+3. Your main project's name has been changed to **boilerplate**. You can change the name of it again by running
 
-    > **Don't rename your project once you've started adding apps. The rename script looks for boilerplate files only in order to rename them. Once you renamed your project and started developing, stick to that name!**
+    `$ python manage.py rename boilerplate <new-project-name>`
 
-4. Apply migrations with `$ python manage.py migrate` to initialize the database with the proprietary Django models.
-
-5. Run the server with `$ python manage.py runserver`.
+    > **Don't rename your project once you've started adding apps. The rename script looks for specific template files only in order to rename them. Once you renamed your project and started developing, stick to that name!**
 
 That's all. Happy coding!
 
@@ -43,10 +46,4 @@ That's all. Happy coding!
 
 - The app includes a handy django toolbar (only available in the development environment) that facilitates debugging.
 
-- The app also includes my favorite settings to develop a Django app on VS Code, and a `launch.json` file to run the server in debugging mode using the integrated debugger in VS Code. Feel free to delete these and the parent `.vscode` folder if you use some other editor.
-
-- An additional command has been added, `$ python manage.py makesuper` that creates a superuser in one line:
-
-  - Username: admin
-  - Password: admin
-  - Email: admin@domain.com
+- The app also includes useful settings to develop a Django app on VS Code, and a `launch.json` file to run the server in debugging mode using the integrated debugger in VS Code. Feel free to delete these and the parent `.vscode` folder if you use some other editor.

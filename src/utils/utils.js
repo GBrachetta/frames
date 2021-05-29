@@ -70,7 +70,7 @@ export const helpMe = () => {
 
 export const goodbye = (framework, framecolor, name) => {
   if (!name) {
-    console.log("\n", title(figlet.textSync("  Bye!")), "\n");
+    console.log(title(figlet.textSync("  Bye!")), "\n");
     return;
   }
   const path = framecolor(`${process.cwd()}/${name}`);
@@ -85,9 +85,21 @@ export const goodbye = (framework, framecolor, name) => {
     ? console.log(
         accent(
           `  Activate your virtual environment with ${framecolor(
-            "pipenv shell"
-          )} and run server with ${framecolor("python manage.py runserver\n")}`
-        )
+            "pipenv shell\n"
+          )}`
+        ),
+        accent(
+          ` Run server with ${framecolor("python manage.py runserver\n")}`
+        ),
+        accent(
+          "\n  A superuser has been created with the following credentials:\n\n"
+        ),
+        accent(" Username:"),
+        framecolor("admin"),
+        accent("\n  Password:"),
+        framecolor("admin"),
+        accent("\n  Email:"),
+        framecolor("admin@domain.com\n")
       )
     : framework === "React"
     ? console.log(

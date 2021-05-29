@@ -12,9 +12,7 @@ class Command(BaseCommand):
             nargs="+",
             help="The current Django project folder name",
         )
-        parser.add_argument(
-            "new", type=str, nargs="+", help="The new Django project name"
-        )
+        parser.add_argument("new", type=str, nargs="+", help="The new Django project name")
 
     def handle(self, *args, **kwargs):
         current_project_name = kwargs["current"][0]
@@ -32,6 +30,7 @@ class Command(BaseCommand):
             "manage.py",
             ".gitignore",
             "Procfile",
+            "README.md",
         ]
 
         for f in files_to_rename:
@@ -45,9 +44,4 @@ class Command(BaseCommand):
 
         os.rename(current_project_name, new_project_name)
 
-        self.stdout.write(
-            self.style.SUCCESS(
-                "Success: Your project has been renamed to %s"
-                % new_project_name
-            )
-        )
+        self.stdout.write(self.style.SUCCESS("Success: Your project has been renamed to %s" % new_project_name))

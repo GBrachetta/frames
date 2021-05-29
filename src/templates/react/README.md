@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with your **React** app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [`Frames`](https://github.com/GBrachetta/frames).
 
 ## Available Scripts
 
