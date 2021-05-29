@@ -1,20 +1,19 @@
 import os
 import dj_database_url
+
 # Import below from the common config as needed, and append to the list (+=)
 from boilerplate.settings.common import INSTALLED_APPS
 
 DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get("DOMAIN_NAME")
+ALLOWED_HOSTS = [os.environ.get("DOMAIN_NAME")]
 
 INSTALLED_APPS += [
     # Add here your new apps for prod only
     "storages",
 ]
 
-DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}  # Add variable in Heroku
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}  # Add variable in Heroku
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True

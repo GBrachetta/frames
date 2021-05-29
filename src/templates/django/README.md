@@ -44,6 +44,16 @@ That's all. Happy coding!
   - `your-app-name/settings/development.py` for settings used during development.
   - `your-app-name/settings/production.py` for settings used for production.
 
+- If you're deploying to Heroku, make sure to add the following environment variables:
+
+  - `DISABLE_COLLECTSTATIC=1` (Until you have setup your AWS S3 bucket)
+  - `DJANGO_ENV=production`
+  - `DOMAIN_NAME=<yourdomain.com>`
+  - `SECRET_KEY=<your-secret-key>`
+  - `AWS_ACCESS_KEY_ID=<your-key>`
+  - `AWS_SECRET_ACCESS_KEY=<your-key>`
+  - `AWS_STORAGE_BUCKET_NAME=<your-key>`
+
 - The app includes a handy django toolbar (only available in the development environment) that facilitates debugging.
 
 - The app also includes useful settings to develop a Django app on VS Code, and a `launch.json` file to run the server in debugging mode using the integrated debugger in VS Code. Feel free to delete these and the parent `.vscode` folder if you use some other editor.
