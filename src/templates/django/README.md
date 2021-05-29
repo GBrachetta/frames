@@ -49,10 +49,9 @@ That's all. Happy coding!
   - `DISABLE_COLLECTSTATIC=1` (Until you have setup your AWS S3 bucket)
   - `DJANGO_ENV=production`
   - `DOMAIN_NAME=<yourdomain.com>`
-  - `SECRET_KEY=<your-secret-key>`
-  - `AWS_ACCESS_KEY_ID=<your-key>`
-  - `AWS_SECRET_ACCESS_KEY=<your-key>`
-  - `AWS_STORAGE_BUCKET_NAME=<your-key>`
+  - `AWS_ACCESS_KEY_ID=<your-AWS-public-key>`
+  - `AWS_SECRET_ACCESS_KEY=<your-AWS-secret-key>`
+  - `AWS_STORAGE_BUCKET_NAME=<your-S3-bucket-name>`
 
 - The app includes a handy django toolbar (only available in the development environment) that facilitates debugging.
 

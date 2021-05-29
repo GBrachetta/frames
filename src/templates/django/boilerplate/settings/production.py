@@ -6,7 +6,7 @@ from boilerplate.settings.common import INSTALLED_APPS
 
 DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get("DOMAIN_NAME")]
+ALLOWED_HOSTS = [os.environ.get("DOMAIN_NAME")]  # Add variable in Heroku
 
 INSTALLED_APPS += [
     # Add here your new apps for prod only
@@ -33,7 +33,7 @@ if "USE_AWS" in os.environ:
     AWS_DEFAULT_ACL = None
     AWS_S3_REGION_NAME = "eu-central-1"
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")  # Add in Heroku
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")  # ditto
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")  # Add in Heroku
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
     STATICFILES_STORAGE = "custom_storages.StaticStorage"
     STATICFILES_LOCATION = "static"

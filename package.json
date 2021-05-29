@@ -1,6 +1,6 @@
 {
   "name": "@gbrachetta/frames",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "type": "module",
   "description": "A tool to scaffold boilerplates",
   "main": "cli.js",
@@ -13,9 +13,11 @@
   },
   "keywords": [
     "boilerplate",
+    "generator",
     "react",
     "django",
-    "nextjs"
+    "nextjs",
+    "vite"
   ],
   "bin": {
     "frames": "bin/frames.js"

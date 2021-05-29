@@ -2,7 +2,7 @@
 
 ## A scaffolding package to bootstrap boilerplates
 
-```
+```markdown
   ——————————————————————————————————————
     _____
    |  ___| __ __ _ _ __ ___   ___  ___
@@ -29,7 +29,6 @@
   Help
   Exit
   ————————————————————————————
-
 ```
 
 ## How to install
@@ -47,6 +46,8 @@ npm -i -g @gbrachetta/frames
 ## How to use
 
 Run `frames` in your terminal and select one of the options in the menu.
+
+> **NOTE:** Run `Frames` in the parent folder of the project to be created
 
 ## Description
 
@@ -66,4 +67,4 @@ Run `frames` in your terminal and select one of the options in the menu.
   - The app also includes useful settings to develop a Django app on VS Code, and a `launch.json` file to run the server in debugging mode using the integrated debugger in VS Code. Feel free to delete these and the parent `.vscode` folder if you use some other editor.
   - It uses split settings for dev and prod.
 
-> **Run `Frames` in the parent folder of the project to be created**
+Further notes and/or instructions available in each particular readme file created after running the script.
