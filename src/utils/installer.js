@@ -32,10 +32,10 @@ const install = async (name, template, framework, frameColor) => {
   );
 
   const options = {
-    name: name,
-    targetDir: targetDir,
-    templateDir: templateDir,
-    errorColor: errorColor,
+    name,
+    targetDir,
+    templateDir,
+    errorColor,
   };
 
   const tasksReactive = new Listr([
@@ -72,11 +72,11 @@ const install = async (name, template, framework, frameColor) => {
   const tasksDjango = new Listr([
     {
       title: step("Check if Python is installed"),
-      task: () => checkPython(options),
+      task: () => checkPython(),
     },
     {
       title: step("Check if Pipenv is installed"),
-      task: () => installPipenv(options),
+      task: () => installPipenv(),
     },
     {
       title: step("Copy project files"),
