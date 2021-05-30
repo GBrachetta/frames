@@ -81,8 +81,9 @@ export const goodbye = (framework, framecolor, name) => {
       `  Your ${project} is ready at ${path}.\n  Now go and create a great app!\n`
     )
   );
-  framework === "Django"
-    ? console.log(
+  switch (framework) {
+    case "Django":
+      console.log(
         accent(
           `  Activate your virtual environment with ${framecolor(
             "pipenv shell\n"
@@ -100,14 +101,18 @@ export const goodbye = (framework, framecolor, name) => {
         framecolor("admin"),
         accent("\n  Email:"),
         framecolor("admin@domain.com\n")
-      )
-    : framework === "React"
-    ? console.log(
+      );
+      break;
+    case "React":
+      console.log(
         accent(`  Start development server with ${framecolor("yarn start\n")}`)
-      )
-    : console.log(
+      );
+      break;
+    default:
+      console.log(
         accent(`  Start development server with ${framecolor("yarn dev\n")}`)
       );
+  }
 
   console.log(title(figlet.textSync("  Bye!")), "\n");
 };

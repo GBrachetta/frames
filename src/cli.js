@@ -20,13 +20,19 @@ const menu = async () => {
         choices: framesMenu,
       },
     ])
-    .then((answers) => {
-      let choice = stripAnsi(answers.frame);
-      choice === "Exit"
-        ? goodbye()
-        : choice === "Help"
-        ? helpMe()
-        : installMenu(choice);
+    .then(({ frame }) => {
+      const choice = stripAnsi(frame);
+
+      switch (choice) {
+        case "Exit":
+          goodbye();
+          break;
+        case "Help":
+          helpMe();
+          break;
+        default:
+          installMenu(choice);
+      }
     });
 };
 
