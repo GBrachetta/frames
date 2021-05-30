@@ -6,37 +6,25 @@ import { failedPipenv, noPython } from "./utils.js";
 
 const { which } = shell;
 
-export const copyTemplateFiles = async ({ templateDir, targetDir }) => {
-  return await fse.copy(templateDir, targetDir);
-};
+export const copyTemplateFiles = async ({ templateDir, targetDir }) =>
+  fse.copy(templateDir, targetDir);
 
-export const renameGitignore = async ({ targetDir }) => {
-  return await fse.rename(`${targetDir}/gitignore`, `${targetDir}/.gitignore`);
-};
+export const renameGitignore = async ({ targetDir }) =>
+  fse.rename(`${targetDir}/gitignore`, `${targetDir}/.gitignore`);
 
-export const installDeps = async ({ targetDir }) => {
-  return await execa("yarn", {
+export const installDeps = async ({ targetDir }) =>
+  execa("yarn", { cwd: targetDir });
+
+export const gitInit = async ({ targetDir }) =>
+  execa("git", ["init"], { cwd: targetDir });
+
+export const gitAdd = async ({ targetDir }) =>
+  execa("git", ["add", "."], { cwd: targetDir });
+
+export const gitCommit = async ({ targetDir }) =>
+  execa("git", ["commit", "-m", "initial commit by Frames"], {
     cwd: targetDir,
   });
-};
-
-export const gitInit = async ({ targetDir }) => {
-  return await execa("git", ["init"], {
-    cwd: targetDir,
-  });
-};
-
-export const gitAdd = async ({ targetDir }) => {
-  return await execa("git", ["add", "."], {
-    cwd: targetDir,
-  });
-};
-
-export const gitCommit = async ({ targetDir }) => {
-  return await execa("git", ["commit", "-m", "initial commit by Frames"], {
-    cwd: targetDir,
-  });
-};
 
 export const checkPython = async () => {
   if (!which("pip3")) noPython();
@@ -52,42 +40,36 @@ export const installPipenv = async () => {
   }
 };
 
-export const installPythonDeps = async ({ targetDir }) => {
-  return await execa("pipenv", ["install"], {
-    cwd: targetDir,
-  });
-};
+export const installPythonDeps = async ({ targetDir }) =>
+  execa("pipenv", ["install"], { cwd: targetDir });
 
-export const installPythonDevDeps = async ({ targetDir }) => {
-  return await execa("pipenv", ["install", "--dev"], {
-    cwd: targetDir,
-  });
-};
+export const installPythonDevDeps = async ({ targetDir }) =>
+  execa("pipenv", ["install", "--dev"], { cwd: targetDir });
 
-export const renameDjangoApp = async ({ name, targetDir }) => {
-  return await execa(
+export const renameDjangoApp = async ({ name, targetDir }) =>
+  execa(
     "pipenv",
     ["run", "python", "manage.py", "rename", "boilerplate", name],
     {
       cwd: targetDir,
     }
   );
-};
 
-export const migrateDjango = async ({ targetDir }) => {
-  return await execa("pipenv", ["run", "python", "manage.py", "migrate"], {
+export const migrateDjango = async ({ targetDir }) =>
+  execa("pipenv", ["run", "python", "manage.py", "migrate"], {
     cwd: targetDir,
   });
-};
 
-export const createSuperuser = async ({ targetDir }) => {
-  return await execa("pipenv", ["run", "python", "manage.py", "makesuper"], {
+export const createSuperuser = async ({ targetDir }) =>
+  execa("pipenv", ["run", "python", "manage.py", "makesuper"], {
     cwd: targetDir,
   });
-};
 
-export const removeMakesuper = async ({ targetDir }) => {
-  return await fse.remove(`${targetDir}/core/management/commands/makesuper.py`);
+export const removeMakesuper = async ({ targetDir }) =>
+  fse.remove(`${targetDir}/core/management/commands/makesuper.py`);
+
+export const openVSC = async ({ targetDir }) => {
+  if (which("code")) execa("code", ["."], { cwd: targetDir });
 };
 
 export const goAhead = (framework, name, frameColor, errorColor) => {

@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.4] - 2021-05-30
+
+- Fix: correct install pipenv as it was being trying to execute in the target directory, what wasn't created yet at that point
+- Refactor: Replace ternaries with switch/case
+- Refactor: Extract function to go ahead with installation to helper file
+
 ## [3.4.1] - 2021-05-29
 
 - Add `gunicorn` to Django pipfile
