@@ -5,7 +5,8 @@ import stripAnsi from "strip-ansi";
 import menu from "../cli.js";
 import install from "./installer.js";
 import { projectNameMenu } from "./menu-helpers.js";
-import { colors, goodbye } from "./utils.js";
+import { goodbye } from "./utils.js";
+import colors from "./colors.js";
 
 const installMenu = (framework) => {
   const { errorColor, accent, frame, helpMenu } = colors;

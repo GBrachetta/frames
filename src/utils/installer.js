@@ -17,7 +17,8 @@ import {
   renameDjangoApp,
   renameGitignore,
 } from "./installer-helpers.js";
-import { colors, goodbye } from "./utils.js";
+import { goodbye } from "./utils.js";
+import colors from "./colors.js";
 
 const install = async (name, template, framework, frameColor) => {
   const { errorColor, step } = colors;

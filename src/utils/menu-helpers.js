@@ -2,7 +2,7 @@ import chalk from "chalk";
 import figlet from "figlet";
 import inquirer from "inquirer";
 import shell from "shelljs";
-import { colors } from "./utils.js";
+import colors from "./colors.js";
 
 const { accent, title, keyword, menuLine, spacer, helpMenu, exit } = colors;
 

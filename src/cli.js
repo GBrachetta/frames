@@ -3,7 +3,8 @@ import "shelljs-plugin-clear";
 import stripAnsi from "strip-ansi";
 import installMenu from "./utils/install-menu.js";
 import { framesMenu, mainMenu } from "./utils/menu-helpers.js";
-import { colors, goodbye, helpMe } from "./utils/utils.js";
+import { goodbye, helpMe } from "./utils/utils.js";
+import colors from "./utils/colors.js";
 
 const menu = async () => {
   const { accent } = colors;
