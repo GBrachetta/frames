@@ -1,6 +1,7 @@
 import execa from "execa";
 import fse from "fs-extra";
 import shell from "shelljs";
+import install from "./installer.js";
 import { failedPipenv, noPython } from "./utils.js";
 
 const { which } = shell;
@@ -93,10 +94,18 @@ export const removeMakesuper = async ({ targetDir }) => {
   return await fse.remove(`${targetDir}/core/management/commands/makesuper.py`);
 };
 
-export const openVSC = async ({ targetDir }) => {
-  if (which("code")) {
-    return await execa("code", ["."], {
-      cwd: targetDir,
-    });
+export const goAhead = (framework, name, frameColor, errorColor) => {
+  if (framework === "React") {
+    install(name.project, "react", framework, frameColor);
+  } else if (framework === "Vite-React") {
+    install(name.project, "vite-react", framework, frameColor);
+  } else if (framework === "Vite-Vue") {
+    install(name.project, "vite-vue", framework, frameColor);
+  } else if (framework === "Next.js") {
+    install(name.project, "nextjs", framework, frameColor);
+  } else if (framework === "Django") {
+    install(name.project, "django", framework, frameColor);
+  } else {
+    shell.echo(errorColor("Invalid option!"));
   }
 };
