@@ -73,17 +73,24 @@ export const openVSC = async ({ targetDir }) => {
 };
 
 export const goAhead = (framework, name, frameColor, errorColor) => {
-  if (framework === "React") {
-    install(name.project, "react", framework, frameColor);
-  } else if (framework === "Vite-React") {
-    install(name.project, "vite-react", framework, frameColor);
-  } else if (framework === "Vite-Vue") {
-    install(name.project, "vite-vue", framework, frameColor);
-  } else if (framework === "Next.js") {
-    install(name.project, "nextjs", framework, frameColor);
-  } else if (framework === "Django") {
-    install(name.project, "django", framework, frameColor);
-  } else {
-    shell.echo(errorColor("Invalid option!"));
+  switch (framework) {
+    case "React":
+      install(name.project, "react", framework, frameColor);
+      break;
+    case "Vite-React":
+      install(name.project, "vite-react", framework, frameColor);
+      break;
+    case "Vite-Vue":
+      install(name.project, "vite-vue", framework, frameColor);
+      break;
+    case "Next.js":
+      install(name.project, "nextjs", framework, frameColor);
+      break;
+    case "Django":
+      install(name.project, "django", framework, frameColor);
+      break;
+    default:
+      shell.echo(errorColor("Invalid option!"));
+      break;
   }
 };
