@@ -40,5 +40,13 @@
     "shelljs": "^0.8.4",
     "shelljs-plugin-clear": "^0.2.0",
     "strip-ansi": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.0"
   }
 }
