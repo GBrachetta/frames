@@ -8,7 +8,7 @@ import { goAhead } from "./installer-helpers.js";
 import { projectNameMenu } from "./menu-helpers.js";
 import { goodbye } from "./utils.js";
 
-const installMenu = (framework) => {
+const installMenu = (framework, usrOS) => {
   const { errorColor, accent, frame, helpMenu } = colors;
   const frameColor = frame[framework];
   const validDir = /^[a-zA-Z][a-zA-Z0-9_]*$/;
@@ -24,7 +24,10 @@ const installMenu = (framework) => {
       },
     ])
     .then(({ chosenName }) => {
-      const path = `${shell.pwd().stdout}/${chosenName}`;
+      const path =
+        usrOS === "macos" || usrOS === "linux"
+          ? `${shell.pwd().stdout}/${chosenName}`
+          : `${shell.pwd().stdout}\\${chosenName}`;
       if (chosenName === "") {
         shell.echo("\n ", errorColor("The name of the app cannot be empty!"));
         installMenu(framework);

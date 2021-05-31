@@ -5,8 +5,10 @@ import installMenu from "./utils/install-menu.js";
 import { framesMenu, mainMenu } from "./utils/menu-helpers.js";
 import { goodbye, helpMe } from "./utils/utils.js";
 import colors from "./utils/colors.js";
+import getOS from "./common/common";
 
 const menu = async () => {
+  const usrOS = await getOS();
   const { accent } = colors;
   await mainMenu(accent);
 
@@ -32,7 +34,7 @@ const menu = async () => {
           helpMe();
           break;
         default:
-          installMenu(choice);
+          installMenu(choice, usrOS);
       }
     });
 };

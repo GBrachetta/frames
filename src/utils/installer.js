@@ -19,17 +19,26 @@ import {
 } from "./installer-helpers.js";
 import { goodbye } from "./utils.js";
 import colors from "./colors.js";
+import getOS from "../common/common.js";
 
 const install = async (name, template, framework, frameColor) => {
+  const usrOS = await getOS();
   const { errorColor, step } = colors;
-  const targetDir = `${process.cwd()}/${name}`;
+  const targetDir =
+    usrOS === "macos" || usrOS === "linux"
+      ? `${process.cwd()}/${name}`
+      : `${process.cwd()}\\${name}`;
 
   const currentFileUrl = import.meta.url;
-  const templateDir = path.resolve(
+  const winPath = path
+    .resolve(new URL(currentFileUrl).pathname, "../../templates", template)
+    .slice(3);
+  const macPath = path.resolve(
     new URL(currentFileUrl).pathname,
     "../../templates",
     template
   );
+  const templateDir = usrOS === "windows" ? winPath : macPath;
 
   const options = {
     name,
